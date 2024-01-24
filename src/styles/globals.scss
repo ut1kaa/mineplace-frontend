@@ -1,0 +1,37 @@
+:root {
+  --max-width: 1400px;
+  --border-radius: 25px;
+
+  --foreground-rgb: 255, 255, 255;
+  --background-gradient: linear-gradient(#312840, #1E152E, #110F2C);
+  --logo-gradient: linear-gradient(300deg, #9977CE, #543883);
+
+  --darkButton-hex: #281E39;
+  --darkButton-text-hex: #745AA0;
+
+  --outlineButton-gradient: linear-gradient(300deg, #9574CA, #5A3D89);
+  --outlineButton-text-gradient: var(--outlineButton-gradient);
+
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--background-gradient);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

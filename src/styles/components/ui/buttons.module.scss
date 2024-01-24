@@ -1,0 +1,15 @@
+.darkButton {
+    height: 38px;
+    width: 104px;
+    border: 0 solid transparent;
+    border-radius: var(--border-radius);
+    background-color: var(--darkButton-hex);
+    color: var(--darkButton-text-hex);
+}
+
+.outlineButton {
+    height: 38px;
+    width: 150px;
+    border-radius: var(--border-radius);
+    background-color: transparent
+}
