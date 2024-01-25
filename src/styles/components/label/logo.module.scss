@@ -1,6 +1,18 @@
 .textlogo {
+    user-select: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
+
+    transition: filter 300ms, transform 100ms;
+    &:active {
+        transform: scale(0.95);
+
+    };
+
+    &:hover {
+        filter: brightness(80%);
+    }
 }
 
 .text {
