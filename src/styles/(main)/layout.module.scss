@@ -7,13 +7,18 @@
 
 .content {
     max-width: var(--max-width);
-    padding: 1.5rem 0;
+    // padding: 0.7rem 0;
+
+    width: 100%;
 }
 
 .header {
+    padding-top: 0.7rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    justify-content: space-between;
 }
 
 .navRows {
@@ -25,4 +30,32 @@
             margin-left: 30px;
         }
     }
+}
+
+.buttonsRows {
+    margin-left: 30px;
+    & > * {
+        margin-left: 10px;
+    }
+}
+
+.footer_layout {
+    // width: 100vw;
+    height: 100vh;
+    background-color: var(--footer-hex);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_above {
+    display: inherit;
+    flex-direction: row;
+}
+
+.footer_row {
+    display: flex;
+    flex-direction: column;
 }
