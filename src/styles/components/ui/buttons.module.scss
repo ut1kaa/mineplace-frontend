@@ -1,15 +1,76 @@
+// --border-radius
+// --outlineButton-gradient
+
 .darkButton {
+    cursor: pointer;
+
     height: 38px;
     width: 104px;
     border: 0 solid transparent;
     border-radius: var(--border-radius);
     background-color: var(--darkButton-hex);
     color: var(--darkButton-text-hex);
+    
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: filter 300ms, transform 100ms;
+    &:active {
+        transform: scale(0.95);
+
+    };
+
+    &:hover {
+        filter: brightness(90%);
+    }
 }
 
 .outlineButton {
+    cursor: pointer;
+
     height: 38px;
-    width: 150px;
-    border-radius: var(--border-radius);
-    background-color: transparent
+    width: 170px;
+
+    border: 0 solid transparent;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+    
+    font-size: 16px;
+    font-weight: 500;
+
+    & svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    & svg rect {
+        stroke-width: 2;
+        stroke-dasharray: 353, 0;
+        stroke-dashoffset: 0;
+        -webkit-transition: all 600ms ease;
+        transition: all 600ms ease;
+    }
+
+    & span {
+        background: var(--outlineButton-text-gradient-moz);
+        background: var(--outlineButton-text-gradient-webkit);
+        background: var(--outlineButton-text-gradient);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+
+    transition: filter 300ms, transform 100ms;
+    
+    &:active {
+        transform: scale(0.95);
+
+    };
+
+    &:hover {
+        filter: brightness(80%);
+    }
 }
