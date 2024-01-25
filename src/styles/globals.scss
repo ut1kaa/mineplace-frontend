@@ -1,17 +1,20 @@
 :root {
-  --max-width: 1400px;
+  --max-width: 1250px;
   --border-radius: 25px;
 
   --foreground-rgb: 255, 255, 255;
   --background-gradient: linear-gradient(#312840, #1E152E, #110F2C);
+  --footer-hex: #1A1328;
   --logo-gradient: linear-gradient(300deg, #9977CE, #543883);
 
   --darkButton-hex: #281E39;
   --darkButton-text-hex: #745AA0;
 
-  --outlineButton-gradient: linear-gradient(300deg, #9574CA, #5A3D89);
-  --outlineButton-text-gradient: var(--outlineButton-gradient);
+  --outlineButton-text-gradient: linear-gradient(to right, #9574CA 0%,#5A3D89 100%);
+  --outlineButton-text-gradient-moz: -moz-linear-gradient(left,  #9574CA 0%,#5A3D89 100%);
+  --outlineButton-text-gradient-webkit: -webkit-linear-gradient(left,  #9574CA 0%,#5A3D89 100%);
 
+  font-family: var(--font-inter);
 }
 
 * {
@@ -34,4 +37,8 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  font-family: var(--font-inter);
 }
