@@ -38,8 +38,8 @@ export default function MainLayout({
 
   return (
       <div className={styles.layout}>
-        <div className={styles.content}>
           <header className={styles.header}>
+            <div className={styles.content}>
               <section className={styles.logo}>
                 <TextLogo />
               </section>
@@ -50,14 +50,15 @@ export default function MainLayout({
                 <DarkButton text="Войти"/>
                 <OutlineButton text="Создать аккаунт"/>
               </section>
+            </div>
           </header>
           {children}
-          <footer className={styles.footer_layout}>
-            <div className={styles.footer}>
+          <footer className={styles.footer}>
+            <div className={styles.content}>
               <div className={styles.footer_above}>
                 <section className={styles.footer_info}>
-                  <TextLogo />
-                  <p>Mineplace это проект с открытыми <a href="https://github.com/">исходным кодом</a>.</p>
+                  <div className={styles.footer_label}><TextLogo /></div>
+                  <p>Mineplace это проект с открытыми <a className={styles.source_code} href="https://github.com/">исходным кодом</a>.</p>
                   <p>© Mineplace, Inc.</p>
                 </section>
                 <section className={styles.footer_row}>
@@ -78,7 +79,7 @@ export default function MainLayout({
                   <a href="https://t.me/">Telegram</a>
                   <a href="https://vk.com/">Вконтакте</a>
                 </section>
-                <section className={styles.footer_row}>
+                <section className={styles.footer_buttons}>
                   <OutlineButton text="Создать аккаунт"/>
                   <DarkButton text="Настройки"/>
                 </section>
@@ -89,6 +90,5 @@ export default function MainLayout({
             </div>
           </footer>
         </div>
-      </div>
   );
 }
