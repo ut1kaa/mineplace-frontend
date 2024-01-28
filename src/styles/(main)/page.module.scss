@@ -1,0 +1,64 @@
+.main {
+    background-image: url( '/assets/patterns/MainBackground.svg' );
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h2 {
+        font-size: 64px;
+        font-weight: 600;
+    }
+
+    h1 {
+        font-size: 96px;
+        font-weight: 600;
+    }
+
+    p {
+        color: var(--second-text-hex);
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 16px;
+    }
+
+    span > * {
+        background: var(--label-text-gradient-moz);
+        background: var(--label-text-gradient-webkit);
+        background: var(--label-text-gradient);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .animatetedLabel > * > *{
+        background: var(--second-label-text-gradient-moz);
+        background: var(--second-label-text-gradient-webkit);
+        background: var(--second-label-text-gradient);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+
+    .content {
+        max-width: 650px;
+    }
+
+    button {
+        margin-right: 16px;
+    }
+
+    .mainParrern {
+        svg {
+            position: absolute;
+            top: 8rem;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+    }
+}
+
