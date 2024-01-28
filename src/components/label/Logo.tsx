@@ -1,11 +1,12 @@
 import styles from "@/styles/components/label/logo.module.scss"
 
 import LogoSvg from  '$/public/logo.svg'
+import Link from "next/link";
 
-const Logo = (width: number, height: number) => {
+const Logo = () => {
     return (
         <>
-            <LogoSvg width={width} height={height} />
+            <LogoSvg width={"100%"} height={"100%"} />
         </>
     );
 }
@@ -13,10 +14,14 @@ const Logo = (width: number, height: number) => {
 const TextLogo = () => {
     return (
         <>
-            <div className={styles.textlogo}>
-                <LogoSvg width={38} height={38}/>
-                <span className={styles.text}>mineplace</span>
-            </div >
+            <Link href={"/"}>
+                <div className={styles.textlogo}>
+                    <div className={styles.icon}>
+                        <LogoSvg width={"100%"} height={"100%"} />
+                    </div>
+                    <span className={styles.text}>mineplace</span>
+                </div >
+            </Link>
         </>
     );
 }
