@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.text {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.Animation {
+  animation: slide 3s ease-out infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(100%);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.firstAnimation {
+  animation: slideFirst 3s ease-out infinite;
+}
+
+
+@keyframes slideFirst {
+  0% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
