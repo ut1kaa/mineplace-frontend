@@ -8,21 +8,13 @@
     width: 104px;
     border: 0 solid transparent;
     border-radius: var(--border-radius);
-    background-color: var(--darkButton-hex);
+    background: var(--darkButton-hex);
     color: var(--darkButton-text-hex);
     
     font-size: 16px;
     font-weight: 500;
 
     transition: filter 300ms, transform 100ms;
-    &:active {
-        transform: scale(0.95);
-
-    };
-
-    &:hover {
-        filter: brightness(90%);
-    }
 }
 
 .outlineButton {
@@ -34,7 +26,7 @@
     border: 0 solid transparent;
     position: relative;
     display: inline-block;
-    background-color: transparent;
+    background: transparent;
     
     font-size: 16px;
     font-weight: 500;
@@ -53,18 +45,40 @@
         transition: all 600ms ease;
     }
 
-    & span {
+    & .gradientText {
         background: var(--outlineButton-text-gradient-moz);
         background: var(--outlineButton-text-gradient-webkit);
         background: var(--outlineButton-text-gradient);
 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+      & .generalText {
+        color: #ffffff;
       }
 
 
     transition: filter 300ms, transform 100ms;
+}
+
+.gradientButton {
+    cursor: pointer;
+
+    height: 38px;
+    width: 170px;
+    border: 0 solid transparent;
+    border-radius: var(--border-radius);
+    background: var(--gradientButton-gradient);
+    color: var(--gradientButton-text-hex);
     
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: filter 300ms, transform 100ms;
+}
+
+.action {
     &:active {
         transform: scale(0.95);
 

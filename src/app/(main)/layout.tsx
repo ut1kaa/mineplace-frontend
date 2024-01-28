@@ -48,7 +48,7 @@ export default function MainLayout({
               </section>
               <section className={styles.buttonsRows}>
                 <DarkButton text="Войти"/>
-                <OutlineButton text="Создать аккаунт"/>
+                <OutlineButton isGradient={true} text="Создать аккаунт"/>
               </section>
             </div>
           </header>
@@ -90,7 +90,7 @@ export default function MainLayout({
                   <a href="https://vk.com/" rel="noopener noreferrer" target="_blank">Вконтакте</a>
                 </section>
                 <section className={styles.footer_buttons}>
-                  <OutlineButton text="Создать аккаунт"/>
+                  <OutlineButton isGradient={true} text="Создать аккаунт"/>
                   <DarkButton text="Настройки"/>
                 </section>
               </div>
