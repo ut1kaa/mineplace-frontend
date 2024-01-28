@@ -2,11 +2,23 @@
   --max-width: 1250px;
   --border-radius: 25px;
 
+  --color_thumb: #745AA0;
+  --color_track: #281E39;
+
   --foreground-rgb: 255, 255, 255;
+  --second-text-hex: #bbbbbb;
   --background-gradient: linear-gradient(#312840, #1E152E, #110F2C);
   --footer-hex: #1A1328;
   --logo-gradient: linear-gradient(300deg, #9977CE, #543883);
   --links-hex: #60b1fd;
+
+  --label-text-gradient: linear-gradient(-45deg, #FFFFFF 25%, #787878 50%, #FFFFFF 75%);
+  --label-text-gradient-moz: -moz-linear-gradient(top left, #FFFFFF 25%, #787878 50%, #FFFFFF 75%);
+  --label-text-gradient-webkit: -webkit-linear-gradient(top left, #FFFFFF 25%, #787878 50%, #FFFFFF 75%);
+
+  --second-label-text-gradient: linear-gradient(45deg, #9977CE 15%, #543883, #563988);
+  --second-label-text-gradient-moz: -moz-linear-gradient(bottom left 15%, #9977CE, #543883, #563988);
+  --second-label-text-gradient-webkit: -webkit-linear-gradient(bottom left 15%, #9977CE, #543883, #563988);
 
   --darkButton-hex: #281E39;
   --darkButton-text-hex: #745AA0;
@@ -14,6 +26,9 @@
   --outlineButton-text-gradient: linear-gradient(to right, #9574CA 0%,#5A3D89 100%);
   --outlineButton-text-gradient-moz: -moz-linear-gradient(left,  #9574CA 0%,#5A3D89 100%);
   --outlineButton-text-gradient-webkit: -webkit-linear-gradient(left,  #9574CA 0%,#5A3D89 100%);
+
+  --gradientButton-gradient: linear-gradient(#9977CE, #543883);
+  --gradientButton-text-hex: #DBC3FF;
 
   font-family: var(--font-inter);
 }
@@ -28,11 +43,25 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--background-gradient);
+
+  &::-webkit-scrollbar {
+      width: 4px;
+      height: 6px;
+    }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background:  var(--color_track);
+  }
+  &::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: var(--color_thumb);
+  }
 }
 
 a {
