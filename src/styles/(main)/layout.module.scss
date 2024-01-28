@@ -21,9 +21,7 @@
     color: #bbbbbb;
 
     .content {
-        display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
     }
 }
@@ -47,16 +45,17 @@
 }
 
 .footer {
-    height: 100vh;
     width: 100%;
     background-color: var(--footer-hex);
     display: flex;
     justify-content: center;
     padding: 5rem 0;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: #bbbbbb;
+
+    flex-grow: 1;
     .content {
         flex-direction: column;
 
@@ -83,18 +82,23 @@
 
             .footer_label {
                 color: #ffffff;
+                font-weight: 600;
             }
 
         }
     }
+
+    .footer_above {
+        display: inherit;
+        flex-direction: row;
+    }
+    
+    .footer_row {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-.footer_above {
-    display: inherit;
-    flex-direction: row;
-}
-
-.footer_row {
-    display: flex;
-    flex-direction: column;
+.children {
+    padding: 5rem 0;
 }

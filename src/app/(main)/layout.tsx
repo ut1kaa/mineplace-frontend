@@ -52,13 +52,23 @@ export default function MainLayout({
               </section>
             </div>
           </header>
-          {children}
+          <div className={styles.children}>
+            <div className={styles.content}>
+              {children}
+            </div>
+          </div>
           <footer className={styles.footer}>
             <div className={styles.content}>
               <div className={styles.footer_above}>
                 <section className={styles.footer_info}>
                   <div className={styles.footer_label}><TextLogo /></div>
-                  <p>Mineplace это проект с открытыми <a className={styles.source_code} href="https://github.com/">исходным кодом</a>.</p>
+                  <p>Mineplace это проект с открытым <a 
+                    className={styles.source_code} 
+                    href={process.env.NEXT_PUBLIC_GITHUB_PROJECT_LINK}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    >исходным кодом</a>.
+                  </p>
                   <p>© Mineplace, Inc.</p>
                 </section>
                 <section className={styles.footer_row}>
@@ -75,9 +85,9 @@ export default function MainLayout({
                 </section>
                 <section className={styles.footer_row}>
                   <p className={styles.footer_label}>Соц. сети</p>
-                  <a href="https://discord.com/">Discord</a>
-                  <a href="https://t.me/">Telegram</a>
-                  <a href="https://vk.com/">Вконтакте</a>
+                  <a href="https://discord.com/" rel="noopener noreferrer" target="_blank">Discord</a>
+                  <a href="https://t.me/" rel="noopener noreferrer" target="_blank">Telegram</a>
+                  <a href="https://vk.com/" rel="noopener noreferrer" target="_blank">Вконтакте</a>
                 </section>
                 <section className={styles.footer_buttons}>
                   <OutlineButton text="Создать аккаунт"/>
