@@ -15,23 +15,23 @@ export default function MainLayout({
   const test_links = [
     {
       name: "Моды",
-      to: "/mods"
+      to: "/mods",
     },
     {
       name: "Плагины",
-      to: "/plugins"
+      to: "/plugins",
     },
     {
       name: "Датапаки",
-      to: "/datapacks"
+      to: "/datapacks",
     },
     {
       name: "Шейдеры",
-      to: "/shaders"
+      to: "/shaders",
     },
     {
       name: "Ресурспаки",
-      to: "/resourcepacks"
+      to: "/resourcepacks",
     },
   ];
 
@@ -47,8 +47,8 @@ export default function MainLayout({
                 <InitNavBar navList={test_links} activeHighligth={true}/>
               </section>
               <section className={styles.buttonsRows}>
-                <DarkButton text="Войти"/>
-                <OutlineButton isGradient={true} text="Создать аккаунт"/>
+                <DarkButton text="Войти" redirectTo="/singIn"/>
+                <OutlineButton isGradient={true} redirectTo="/singUp" text="Создать аккаунт"/>
               </section>
             </div>
           </header>
@@ -90,8 +90,8 @@ export default function MainLayout({
                   <a href="https://vk.com/" rel="noopener noreferrer" target="_blank">Вконтакте</a>
                 </section>
                 <section className={styles.footer_buttons}>
-                  <OutlineButton isGradient={true} text="Создать аккаунт"/>
-                  <DarkButton text="Настройки"/>
+                  <OutlineButton isGradient={true}  text="Создать аккаунт" redirectTo="/singUp"/>
+                  <DarkButton text="Настройки" redirectTo="/settings"/>
                 </section>
               </div>
               <div className={styles.footer_below}>

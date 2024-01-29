@@ -19,8 +19,8 @@ export default function Home() {
           <p>Играй, делись, изучай Minecraft дополнения
             через нашу открытую платформу созданную для сообщества.
           </p>
-          <GradientButton text="Исследовать"/>
-          <OutlineButton text="Создать аккаунт"/>
+          <GradientButton redirectTo="/search" text="Исследовать"/>
+          <OutlineButton redirectTo="/signUp" text="Создать аккаунт"/>
         </div>
         <div className={styles.logo}>
           <Logo />
