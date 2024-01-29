@@ -1,31 +1,40 @@
+"use client"
+
 import styles from "@/styles/components/ui/buttons.module.scss";
 import virables from "@/styles/exportedVirables.module.scss";
 
 import {addRandomChars} from "@/utils/idGenerator";
 
+import { useRouter } from 'next/navigation'
+
 type ButtonProps = {
     text: string;
+    redirectTo?: string;
 }
 
 type OutlineButtonProps = {
     text: string;
     isGradient?: boolean;
+    redirectTo?: string;
 }
-  
-const DarkButton: React.FC<ButtonProps> = ({ text }) => {
+
+const DarkButton: React.FC<ButtonProps> = ({ text, redirectTo }) => {
+    const router = useRouter();  
+
     return (
-        <button className={`${styles.darkButton} ${styles.action}`}>
+        <button className={`${styles.darkButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
             {text}
         </button>
     );
 }
 
-const OutlineButton: React.FC<OutlineButtonProps> = ({ text, isGradient=false}) => {
+const OutlineButton: React.FC<OutlineButtonProps> = ({ text, isGradient=false, redirectTo}) => {
+    const router = useRouter();  
     const elementId = addRandomChars("outline-button-gradient");
     const url = `url(#${elementId})`;
 
     return (
-        <button className={`${styles.outlineButton} ${styles.action}`}>
+        <button className={`${styles.outlineButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
             <svg width="170" height="48">
                 <defs>
                     <linearGradient id={elementId}>
@@ -40,9 +49,10 @@ const OutlineButton: React.FC<OutlineButtonProps> = ({ text, isGradient=false}) 
     );
 }
 
-const GradientButton: React.FC<ButtonProps> = ({text}) => {
+const GradientButton: React.FC<ButtonProps> = ({text, redirectTo}) => {
+    const router = useRouter();  
     return (
-        <button className={`${styles.gradientButton} ${styles.action}`}>
+        <button className={`${styles.gradientButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
             {text}
         </button>
     );
