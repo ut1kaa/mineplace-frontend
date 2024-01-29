@@ -68,6 +68,8 @@
             width: inherit;
             justify-content: space-between;
             margin-bottom: 20px;
+            display: inherit;
+            flex-direction: row;
 
             .source_code {
                 color: var(--links-hex);
@@ -95,11 +97,6 @@
         .footer_below {
             text-align: center;
         }
-    }
-
-    .footer_above {
-        display: inherit;
-        flex-direction: row;
     }
     
     .footer_row {
