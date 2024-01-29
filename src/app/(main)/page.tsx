@@ -25,7 +25,7 @@ export default function Home() {
         <div className={styles.logo}>
           <Logo />
         </div>
-        <div className={styles.mainParrern}>
+        <div className={styles.mainPattern}>
           <MainPattern/>
         </div>
       </div>
