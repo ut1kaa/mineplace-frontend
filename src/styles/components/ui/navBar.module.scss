@@ -1,7 +1,9 @@
 .layout {
+    position: relative;
     font-size: 16px;
     font-weight: 600;
     list-style-type: none;
+    flex-direction: column;
 
     .children {
         transition: transform 100ms;
@@ -11,5 +13,14 @@
         };
     }
 
+    .activeTabLine {
+        position: absolute;
+        top: 12px;
+    }
+
+    svg {
+        stroke: #745AA0;
+        stroke-width: 12px;
+    }
 }
 
