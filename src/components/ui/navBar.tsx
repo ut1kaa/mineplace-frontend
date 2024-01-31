@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
-// import { useRouter } from 'next/router'
 import { useRef, useLayoutEffect, useState} from 'react';
 
 import styles from "@/styles/components/ui/navBar.module.scss"
