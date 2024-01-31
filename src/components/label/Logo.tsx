@@ -17,7 +17,7 @@ const TextLogo = () => {
             <Link href={"/"}>
                 <div className={styles.textlogo}>
                     <div className={styles.icon}>
-                        <LogoSvg width={"100%"} height={"100%"} />
+                        <Logo />
                     </div>
                     <span className={styles.text}>mineplace</span>
                 </div >
