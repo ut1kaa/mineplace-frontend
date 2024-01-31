@@ -1,8 +1,10 @@
 $outlineButton-gradient-start: #9574CA;
 $outlineButton-gradient-stop: #5A3D89;
+$margin_px: 30;
 
 
 :export {
     outlineButton_gradient_start: $outlineButton-gradient-start;
     outlineButton_gradient_stop: $outlineButton-gradient-stop;
+    margin_px: $margin_px;
   }
