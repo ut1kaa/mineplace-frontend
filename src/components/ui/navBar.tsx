@@ -1,33 +1,61 @@
 "use client"
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
+// import { useRouter } from 'next/router'
 import { useRef, useLayoutEffect, useState} from 'react';
 
 import styles from "@/styles/components/ui/navBar.module.scss"
+import variables from "@/styles/exportedVirables.module.scss";
+
 
 
 type NavBarProps = {
     navList: { name: string; to: string; ref?: React.RefObject<any>;}[],
     activeHighligth?: boolean,
-    activeTab?: number | undefined,
   };
   
-const InitNavBar: React.FC<NavBarProps> = ({ navList, activeHighligth = false, activeTab = undefined}) => {
+const InitNavBar: React.FC<NavBarProps> = ({ navList, activeHighligth = false}) => {
+    var activeTabSize;
+
+    if (activeHighligth) {
+        const pathname = usePathname()
     
-    activeHighligth=true;
-    activeTab=0;
-
-    const [width, setWidth] = useState(0);
-
+        const activeTab = navList.findIndex(item => item.to === pathname);
     
-    useLayoutEffect(() => {
-        setWidth(navList[activeTab].ref!.current.offsetWidth);
-      }, []);
-
+        const [width, setWidth] = useState(0);
+        const [left, setLeft] = useState(0);
+    
+        activeTabSize = {
+            position: "absolute" as "absolute",
+            width: (activeTab < 0 || activeTab > navList.length) ? "50px" : `${width}px`,
+            opacity: (activeTab < 0 || activeTab > navList.length) ? "0" : "1",
+            transform: (activeTab < 0 || activeTab > navList.length) ? "translateX(-100px)" : `translateX(calc(${left}px - ${variables.margin_px}px))`,
+            height: "5px",
+            transition: "transform 0.2s ease-in-out, opacity 0.1s ease-in-out",
+            }
+    
+        useLayoutEffect(() => {
+            if (activeTab >= 0 && activeTab <= navList.length) {
+                console.log(activeTab);
+                // const rect = navList[activeTab].ref!.current.getBoundingClientRect();
+                // setLeft(rect.left);
+                // setWidth(rect.width);
+    
+                const childRect = navList[activeTab].ref!.current.getBoundingClientRect();
+                const parentRect = navList[activeTab].ref!.current.parentNode.parentNode.getBoundingClientRect();
+          
+                const left = childRect.left - parentRect.left;
+          
+                setLeft(left);
+                setWidth(childRect.width);
+            }
+    
+          }, [navList[activeTab]]);
+    } 
+    
     navList.forEach(item => {
         item.ref = useRef(null);
       });
-
-    // console.log(navList[activeTab].ref!.current.offsetWidth)
 
       return (
         <nav className={styles.layout}>
@@ -36,21 +64,15 @@ const InitNavBar: React.FC<NavBarProps> = ({ navList, activeHighligth = false, a
                     <Link ref={link.ref} href={link.to}>{link.name}</Link>
                 </div>
             )))}
-            {activeHighligth && typeof activeTab !== undefined && navList[activeTab]?.ref ? ( 
+            { activeHighligth ? 
                 <div className={styles.activeTabLine}>
-                        <div className="activeTabSize">
-                        <svg width="100%" height="5" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0" y1="0" x2="100" y2="0" stroke-linecap="round" />
+                        <div style={activeTabSize}>
+                        <svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <line x1="0" y1="1" x2="100" y2="1" />
                         </svg>
-                        <style jsx>{`
-                            .activeTabSize {
-                                width: ${width}px;
-                                height: 5px;
-                            }
-                        `}</style>
                     </div>
-                </div>
-            ) : ""}
+                </div> : ""
+            }
         </nav>
     );
     
