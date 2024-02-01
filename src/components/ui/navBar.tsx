@@ -65,10 +65,12 @@ const InitNavBar: React.FC<NavBarProps> = ({ navList, activeHighligth = false}) 
             )))}
             { activeHighligth ? 
                 <div className={styles.activeTabLine}>
-                        <div style={activeTabSize}>
-                        <svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                    <div style={activeTabSize}>
+                        {/* <svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg" version="1.1">
                             <line x1="0" y1="1" x2="100" y2="1" />
-                        </svg>
+                        </svg> */}
+                        <div className={styles.line}>
+                        </div>
                     </div>
                 </div> : ""
             }

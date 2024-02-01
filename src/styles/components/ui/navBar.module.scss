@@ -15,7 +15,8 @@
 
     .activeTabLine {
         position: absolute;
-        top: 12px;
+        // top: 12px;
+        top: 22px;
     }
 
     svg {
@@ -23,6 +24,13 @@
         border: 3px solid #745AA0; 
         border-radius: 5px;
 
+    }
+
+    .line {
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background-color: #745AA0;
     }
 }
 
