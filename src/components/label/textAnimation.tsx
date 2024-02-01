@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import styles from '@/styles/components/label/textAnimation.module.scss';
 
-const TextAnimation = () => {
-    const texts = ["моды", "плагины", "датапаки", "шейдеры", "ресурспаки"];
+
+
+const TextAnimation = ({ texts }: { texts: string[] }) => {
     const [index, setIndex] = useState(0);
     const [isPageLoaded, setPageLoaded] = useState(false);
     const [isFirstSlide, setFirstSlide] = useState(true);
