@@ -7,18 +7,8 @@ import {addRandomChars} from "@/utils/idGenerator";
 
 import { useRouter } from 'next/navigation'
 
-type ButtonProps = {
-    text: string;
-    redirectTo?: string;
-}
 
-type OutlineButtonProps = {
-    text: string;
-    isGradient?: boolean;
-    redirectTo?: string;
-}
-
-const DarkButton: React.FC<ButtonProps> = ({ text, redirectTo }) => {
+const DarkButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
     const router = useRouter();  
 
     return (
@@ -28,7 +18,7 @@ const DarkButton: React.FC<ButtonProps> = ({ text, redirectTo }) => {
     );
 }
 
-const OutlineButton: React.FC<OutlineButtonProps> = ({ text, isGradient=false, redirectTo}) => {
+const OutlineButton = ({ text, isGradient=false, redirectTo}: {text: string; isGradient?: boolean; redirectTo?: string;}) => {
     const router = useRouter();  
     const elementId = addRandomChars("outline-button-gradient");
     const url = `url(#${elementId})`;
@@ -49,7 +39,7 @@ const OutlineButton: React.FC<OutlineButtonProps> = ({ text, isGradient=false, r
     );
 }
 
-const GradientButton: React.FC<ButtonProps> = ({text, redirectTo}) => {
+const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
     const router = useRouter();  
     return (
         <button className={`${styles.gradientButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>

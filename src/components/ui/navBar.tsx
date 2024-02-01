@@ -7,13 +7,7 @@ import styles from "@/styles/components/ui/navBar.module.scss"
 import variables from "@/styles/exportedVirables.module.scss";
 
 
-
-type NavBarProps = {
-    navList: { name: string; to: string; ref?: React.RefObject<any>;}[],
-    activeHighligth?: boolean,
-  };
-  
-const InitNavBar: React.FC<NavBarProps> = ({ navList, activeHighligth = false}) => {
+const InitNavBar = ({ navList, activeHighligth = false}: {navList:{ name: string; to: string; ref?: React.RefObject<any>;}[]; activeHighligth?: boolean}) => {
     var activeTabSize;
 
     if (activeHighligth) {
