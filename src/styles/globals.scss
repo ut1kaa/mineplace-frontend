@@ -53,6 +53,8 @@ body {
   &::-webkit-scrollbar {
       width: 4px;
       height: 6px;
+      display: none;
+
     }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
