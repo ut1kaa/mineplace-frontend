@@ -53,7 +53,7 @@ const InitNavBar = ({ navList, activeHighligth = false}: {navList:{ name: string
       return (
         <nav className={styles.layout}>
             {navList.map((link => (
-                <div className={styles.children}>
+                <div className={styles.children} key={link.to}>
                     <Link ref={link.ref} href={link.to}>{link.name}</Link>
                 </div>
             )))}
