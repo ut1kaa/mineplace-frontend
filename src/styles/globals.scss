@@ -5,7 +5,7 @@
   --color_thumb: #745AA0;
   --color_track: #281E39;
 
-  --foreground-rgb: 255, 255, 255;
+  --foreground-hex: #ffffff;
   --second-text-hex: #bbbbbb;
   --background-gradient: linear-gradient(#312840, #1E152E, #110F2C);
   --footer-hex: #1A1328;
@@ -33,7 +33,8 @@
   --label-hex: #4E3D67;
   --label-text-hex: #B08AEA;
 
-  --block-gradient: linear-gradient(135deg, #00000000, #ffffff0d);;
+  --block-gradient: linear-gradient(135deg, #00000000, #ffffff0d);
+  --subblock-gradient: linear-gradient(90deg, #ffffff05, #ffffff0d);
 
   font-family: var(--font-inter);
 }
@@ -52,7 +53,7 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--foreground-hex);
   background: var(--background-gradient);
 
   &::-webkit-scrollbar {
