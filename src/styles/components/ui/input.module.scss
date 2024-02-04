@@ -167,7 +167,7 @@
     
     .selectedOptions {
         display: flex;
-        width: 90%;
+        width: 80%;
         ul {
             display: flex;
             flex-wrap: wrap;
@@ -321,6 +321,7 @@
 
     
     .selectedOption {
+        user-select: none;
         display: flex;
         align-items: center;
         width: 90%;

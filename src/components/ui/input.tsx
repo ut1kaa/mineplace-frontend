@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { OutlineSubBlock } from "./outlineBlocks";
 import styles from "@/styles/components/ui/input.module.scss"
 import SeachIcon from "$/assets/icons/search.svg"
@@ -29,7 +29,7 @@ const Search = ({standartValue}: {standartValue?: string}) => {
     );
 }
 
-const MultiSelect = ({options, standartSelectedOptions=[]} : {options: {name: string, id: string}[]; standartSelectedOptions?: {name: string, id: string}[]}) => {
+const MultiSelect = ({info, options, standartSelectedOptions=[]} : {info: {label: string, name: string}, options: {name: string, id: string}[]; standartSelectedOptions?: {name: string, id: string}[]}) => {
     const elementId = addRandomChars("multiselect");
 
     const [selectedOptions, setSelectedOptions] = useState<{name: string, id: string}[]>(standartSelectedOptions);
@@ -61,7 +61,7 @@ const MultiSelect = ({options, standartSelectedOptions=[]} : {options: {name: st
     return (
         <div className={styles.multiSelect}>
             <OutlineSubBlock style={{height:"auto", width:"100%", minHeight:"55px", padding: "0.5rem", position: "relative"}}>
-                <label htmlFor={elementId} style={{ opacity: selectedOptions.length > 0 ? 0 : 1 }}>Сортировка</label>
+                <label htmlFor={elementId} style={{ opacity: selectedOptions.length > 0 ? 0 : 1 }}>{info.label}</label>
                     <div className={styles.selectedOptions}>
                         <ul>
                         {selectedOptions.map((option) => (
@@ -80,7 +80,7 @@ const MultiSelect = ({options, standartSelectedOptions=[]} : {options: {name: st
             {showOptions && (
                 <div className={styles.availableOptions}>
                     <OutlineSubBlock style={{height:"auto", width:"100%"}}> 
-                        <select id={elementId} name="sort" multiple style={{height: (options.length-selectedOptions.length) * 58 + "px"}} 
+                        <select id={elementId} name={info.name} multiple style={{height: (options.length-selectedOptions.length) * 58 + "px"}} 
                         onChange={(e) => {
                             const selectedOptionId = e.target.value;
                             const selectedOption = options.find(option => option.id === selectedOptionId);
@@ -104,7 +104,7 @@ const MultiSelect = ({options, standartSelectedOptions=[]} : {options: {name: st
 }
 
 
-const Select = ({options, standartSelectedOption} : {options: {name: string, id: string}[]; standartSelectedOption: {name: string, id: string}}) => {
+const Select = ({info, options, standartSelectedOption} : {info: {label: string, name: string}, options: {name: string, id: string}[]; standartSelectedOption: {name: string, id: string}}) => {
     const elementId = addRandomChars("select");
 
     const [selectedOption, setSelectedOption] = useState<{name: string, id: string} | undefined>(standartSelectedOption);
@@ -119,7 +119,7 @@ const Select = ({options, standartSelectedOption} : {options: {name: string, id:
     return (
         <div className={styles.Select}>
             <OutlineSubBlock style={{ height: "auto", width: "100%", minHeight: "55px", padding: "1rem", position: "relative" }}>
-                <label htmlFor={elementId} style={{ opacity: selectedOption ? 0 : 1 }}>Сортировка</label>
+                <label htmlFor={elementId} style={{ opacity: selectedOption ? 0 : 1 }}>{info.label}</label>
                 <div className={styles.selectedOption} onClick={() => setShowOptions(!showOptions)}>
                     {selectedOption ? selectedOption.name : ""}
                 </div>
@@ -130,7 +130,7 @@ const Select = ({options, standartSelectedOption} : {options: {name: string, id:
             {showOptions && (
                 <div className={styles.availableOptions}>
                     <OutlineSubBlock style={{height:"auto", width:"100%"}}> 
-                        <select id={elementId} name="sort" multiple style={{ height: (options.length - (selectedOption ? 1 : 0)) * 58 + "px" }}
+                        <select id={elementId} name={info.name} multiple style={{ height: (options.length - (selectedOption ? 1 : 0)) * 58 + "px" }}
                         onChange={(e) => {
                             const selectedOptionId = e.target.value;
                             const selectedOption = options.find(option => option.id === selectedOptionId);
