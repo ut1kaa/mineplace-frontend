@@ -1,14 +1,42 @@
 import { GradientButton, OutlineButton } from "@/components/ui/buttons";
 import { Logo } from "@/components/label/Logo";
-import { OutlineBlock } from "@/components/ui/outlineBlock";
+import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
 
 import MainPattern from  '$/assets/patterns/MainBackground.svg'
 
 import styles from "@/styles/(main)/page.module.scss";
 import TextAnimation from "@/components/label/textAnimation";
+import { Search, MultiSelect, Select } from "@/components/ui/input";
 
 export default function Home() {
   const texts = ["моды", "плагины", "датапаки", "шейдеры", "ресурспаки"];
+
+
+  const sort_option = [
+    {
+      name: "Возрастанию",
+      id: "down-up"
+    },
+    {
+      name: "Загрузки",
+      id: "downloads"
+    }, 
+    {
+      name: "Новизна",
+      id: "newest"
+    }, 
+    {
+      name: "Обновлние",
+      id: "update"
+    }, 
+  ]
+  
+  const selectedOption = 
+    {
+      name: "Возрастанию",
+      id: "down-up"
+    }
+  
 
   return (
     <>
@@ -72,7 +100,14 @@ export default function Home() {
             <div className={styles.preview}>
               <OutlineBlock>
                 <div className={styles.search_content}>
-                  <p>Прикол</p>
+                  <Search standartValue={"Скачать мод на вику"}/>
+                  <div className={styles.selectLayout}>
+                    <p>Сортировать по</p>
+                    {/* <MultiSelect options={sort_option} standartSelectedOptions={selectedOptions}/> */}
+                    <div className={styles.SelectComponent}>
+                      <Select options={sort_option} standartSelectedOption={selectedOption}/>
+                    </div>
+                  </div>
                 </div>
               </OutlineBlock>
             </div>
