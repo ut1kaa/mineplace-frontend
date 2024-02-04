@@ -2,11 +2,13 @@ import { GradientButton, OutlineButton } from "@/components/ui/buttons";
 import { Logo } from "@/components/label/Logo";
 import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
 
-import MainPattern from  '$/assets/patterns/MainBackground.svg'
+import MainPattern from '$/assets/patterns/MainBackground.svg'
+import Notify from '$/assets/icons/notify.svg'
 
 import styles from "@/styles/(main)/page.module.scss";
 import TextAnimation from "@/components/label/textAnimation";
-import { Search, MultiSelect, Select } from "@/components/ui/input";
+import { Search, Select } from "@/components/ui/input";
+
 
 export default function Home() {
   const texts = ["моды", "плагины", "датапаки", "шейдеры", "ресурспаки"];
@@ -18,15 +20,15 @@ export default function Home() {
       id: "down-up"
     },
     {
-      name: "Загрузки",
+      name: "Загрузкам",
       id: "downloads"
     }, 
     {
-      name: "Новизна",
+      name: "Новизне",
       id: "newest"
     }, 
     {
-      name: "Обновлние",
+      name: "Обновлению",
       id: "update"
     }, 
   ]
@@ -37,6 +39,12 @@ export default function Home() {
       id: "down-up"
     }
   
+  const selectedOptions = [
+    {
+      name: "Возрастанию",
+      id: "down-up"
+    }
+  ]
 
   return (
     <>
@@ -103,9 +111,9 @@ export default function Home() {
                   <Search standartValue={"Скачать мод на вику"}/>
                   <div className={styles.selectLayout}>
                     <p>Сортировать по</p>
-                    {/* <MultiSelect options={sort_option} standartSelectedOptions={selectedOptions}/> */}
                     <div className={styles.SelectComponent}>
-                      <Select options={sort_option} standartSelectedOption={selectedOption}/>
+                      {/* <MultiSelect options={sort_option} standartSelectedOptions={selectedOptions}/> */}
+                      <Select info={{label: "Сортировка", name: "sort"}} options={sort_option} standartSelectedOption={selectedOption}/>
                     </div>
                   </div>
                 </div>
@@ -124,6 +132,13 @@ export default function Home() {
             <div className={styles.preview}>
               <OutlineBlock>
                   <div className={styles.follow_content}>
+                    <div className={styles.follow_label}>
+                      <Notify/>
+                      <span>Уведомления</span>
+                    </div>
+                    <OutlineSubBlock style={{width: "100%", height: "70px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "100%", height: "200px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "100%", height: "40px"}}></OutlineSubBlock>
                   </div>
                 </OutlineBlock>
             </div>
@@ -132,6 +147,22 @@ export default function Home() {
             <div className={styles.preview}>
               <OutlineBlock>
                 <div className={styles.support_content}>
+                  <div className={styles.chat_message_left}>
+                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "40%", height: "100px"}}></OutlineSubBlock>
+                  </div>
+                  <div className={styles.chat_message_right}>
+                    <OutlineSubBlock style={{width: "40%", height: "60px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                  </div>
+                  <div className={styles.chat_message_left}>
+                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "25%", height: "30px"}}></OutlineSubBlock>
+                  </div>
+                  <div className={styles.chat_message_right}>
+                    <OutlineSubBlock style={{width: "35%", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                  </div>
                 </div>
               </OutlineBlock>
             </div>

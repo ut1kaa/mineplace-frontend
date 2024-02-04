@@ -194,6 +194,47 @@
                         }
                     }
                 }
+
+                .follow_content {
+                    display: flex;
+                    flex-direction: column;
+
+                    .follow_label {
+                        display: flex;
+
+                        svg {
+                            position: relative;
+                        }
+
+                        & > * {
+                            margin-right: 1rem;
+                        }
+                    }
+
+                    & > * {
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                .support_content {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .chat_message_left {
+                        display: flex;
+                        justify-content: start;
+                    }
+
+                    .chat_message_right {
+                        display: flex;
+                        justify-content: end;
+                    }
+
+                    & > * {
+                        margin: 1rem 0;
+                    }
+                }
             }
             
 
