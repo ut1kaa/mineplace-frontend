@@ -148,20 +148,20 @@ export default function Home() {
               <OutlineBlock>
                 <div className={styles.support_content}>
                   <div className={styles.chat_message_left}>
-                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px", marginRight: "0.5rem"}}></OutlineSubBlock>
                     <OutlineSubBlock style={{width: "40%", height: "100px"}}></OutlineSubBlock>
                   </div>
                   <div className={styles.chat_message_right}>
                     <OutlineSubBlock style={{width: "40%", height: "60px"}}></OutlineSubBlock>
-                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px", marginLeft: "0.5rem"}}></OutlineSubBlock>
                   </div>
                   <div className={styles.chat_message_left}>
-                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px", marginRight: "0.5rem"}}></OutlineSubBlock>
                     <OutlineSubBlock style={{width: "25%", height: "30px"}}></OutlineSubBlock>
                   </div>
                   <div className={styles.chat_message_right}>
                     <OutlineSubBlock style={{width: "35%", height: "30px"}}></OutlineSubBlock>
-                    <OutlineSubBlock style={{width: "30px", height: "30px"}}></OutlineSubBlock>
+                    <OutlineSubBlock style={{width: "30px", height: "30px", marginLeft: "0.5rem"}}></OutlineSubBlock>
                   </div>
                 </div>
               </OutlineBlock>
