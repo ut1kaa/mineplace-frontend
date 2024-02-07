@@ -4,10 +4,16 @@ import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
 
 import MainPattern from '$/assets/patterns/MainBackground.svg'
 import Notify from '$/assets/icons/notify.svg'
+import LinkLogo from '$/assets/icons/link.svg'
+import Dollar from '$/assets/icons/dollar.svg'
+import StatisticLogo from '$/assets/icons/statistic.svg'
+import CodeTogether from '$/assets/icons/code_together.svg'
+import FeedbackLogo from '$/assets/icons/feedback.svg'
+import HelpLogo from '$/assets/icons/help.svg'
 
 import styles from "@/styles/(main)/page.module.scss";
 import TextAnimation from "@/components/label/textAnimation";
-import { Search, Select } from "@/components/ui/input";
+import { Search, Select, MultiSelect } from "@/components/ui/input";
 
 
 export default function Home() {
@@ -112,7 +118,7 @@ export default function Home() {
                   <div className={styles.selectLayout}>
                     <p>Сортировать по</p>
                     <div className={styles.SelectComponent}>
-                      {/* <MultiSelect options={sort_option} standartSelectedOptions={selectedOptions}/> */}
+                      {/* <MultiSelect info={{label: "Сортировка", name: "sort"}} options={sort_option} standartSelectedOptions={selectedOptions}/> */}
                       <Select info={{label: "Сортировка", name: "sort"}} options={sort_option} standartSelectedOption={selectedOption}/>
                     </div>
                   </div>
@@ -172,6 +178,123 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div className={styles.creators_section}>
+        <div className={styles.content}>
+          <div className={styles.label}>
+            <span>Для создателей</span>
+          </div>
+          <div className={styles.label_info}>
+            <h1>Делись своим контентом со всем миром</h1>
+            <p>Создай страницу для своих творений и набери аудиторию заинтересованных игроков.</p>
+          </div>
+          <div className={styles.creators_cards}>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Делитесь</h1>
+                  <p>Пусть тысячи игроков со всего интернета узнают о вашем проекте.</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <LinkLogo/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Монетизируйте</h1>
+                  <p>Зарабатывайте, получатей переводы на своём проекте и выводите на свой кошелёк в любое время.</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <Dollar/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Статистика</h1>
+                  <p>Просматревайте подробную стратистику о вашем проекте в соответвующем разделе</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <StatisticLogo/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Разрабатывайте вместе</h1>
+                  <p>Пригласите коллег в свою команду и разрабатывайте проект вместе</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <CodeTogether/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Обратная связь</h1>
+                  <p>Получайте мнгновенную обратную связь от пользователей.</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <FeedbackLogo/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+            <div className={styles.creators_card}>
+              <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                <div className={styles.card_label}>
+                  <h1>Помощь</h1>
+                  <p>Свяжитесь с командой Mineplace и мы поможем с решением проблемы.</p>
+                </div>
+              </OutlineSubBlock>
+              <div className={styles.card_icon}>
+                <OutlineSubBlock style={{width: "100%", height: "100%"}}> 
+                  <div className={styles.icon}>
+                    <HelpLogo/>
+                  </div>
+                </OutlineSubBlock>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div className={styles.creators_background}></div>
+      </div>
+      <div className={styles.slogan_section}>
+        <div className={styles.slogan_label}>
+          <h2>Будь вместе с</h2>
+          <h1>Mineplace</h1>
+        </div>
+        <div className={styles.logo}>
+          <Logo />
+        </div>
+        <div className={styles.slogan_button}>
+          <GradientButton redirectTo="/search" text="Исследовать"/>
+        </div>
+        <div className={styles.slogan_background}></div>
       </div>
     </>
   );
