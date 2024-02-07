@@ -34,7 +34,7 @@ const OutlineSubBlock = ({children, style}: {children?: React.ReactNode; style?:
         <div className={styles.outlineSubBlock} style={style}>
         <svg width="100%" height="100%">
             <defs>
-                <linearGradient id={elementId} gradientTransform="rotate(90) translate(0.15, 0)">
+                <linearGradient id={elementId} gradientTransform="rotate(90) translate(0, 0)">
                     <stop offset="0%" stopColor={virables.block_outline_gradient_start}/>
                     <stop offset="100%" stopColor={virables.block_outline_gradient_stop}/>
                 </linearGradient>
