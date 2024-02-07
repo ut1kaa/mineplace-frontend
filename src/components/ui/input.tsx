@@ -14,8 +14,8 @@ const Search = ({standartValue}: {standartValue?: string}) => {
 
     const elementId = addRandomChars("search");
 
-    const handleChange= (e: React.FormEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
     }
 
     return (
