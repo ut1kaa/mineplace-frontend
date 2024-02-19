@@ -1,6 +1,9 @@
-import { TextLogo } from "@/components/label/Logo";
+import { TextLogo, Logo } from "@/components/label/Logo";
 import { InitNavBar } from "@/components/ui/navBar";
 import { DarkButton, OutlineButton } from "@/components/ui/buttons";
+
+import SeachIcon from "$/assets/icons/search.svg"
+import BurgerIcon from "$/assets/icons/burger.svg"
 
 import styles from "@/styles/(main)/layout.module.scss";
 
@@ -52,6 +55,24 @@ export default function MainLayout({
               </section>
             </div>
           </header>
+          <header className={styles.mobile_header}>
+            <div className={styles.content}>
+              <section className={styles.logo}>
+                <Logo />
+              </section>
+              <section className={styles.open_nav}>
+                <button>
+                  <SeachIcon/>
+                  <span>Поиск</span>
+                </button>
+              </section>
+              <section className={styles.burger}>
+                <button>
+                  <BurgerIcon/>
+                </button>
+              </section>
+            </div>
+          </header>
           <div className={styles.children}>
             <div className={styles.content}>
               {children}
@@ -71,23 +92,25 @@ export default function MainLayout({
                   </p>
                   <p>© Mineplace, Inc.</p>
                 </section>
-                <section className={styles.footer_row}>
-                  <p className={styles.footer_label}>Компания</p>
-                  <Link href={"/company/terms"}>Условия</Link>
-                  <Link href={"/company/privacy"}>Конфиденциальность</Link>
-                  <Link href={"/company/rules"}>Правила</Link>
-                </section>
-                <section className={styles.footer_row}>
-                  <p className={styles.footer_label}>Ресурсы</p>
-                  <Link href={"/blog"}>Блог</Link>
-                  <Link href={"/docs"}>Документация</Link>
-                  <a href="https://github.com/">GitHub</a>
-                </section>
-                <section className={styles.footer_row}>
-                  <p className={styles.footer_label}>Соц. сети</p>
-                  <a href="https://discord.com/" rel="noopener noreferrer" target="_blank">Discord</a>
-                  <a href="https://t.me/" rel="noopener noreferrer" target="_blank">Telegram</a>
-                  <a href="https://vk.com/" rel="noopener noreferrer" target="_blank">Вконтакте</a>
+                <section className={styles.footer_links}>
+                  <section className={styles.footer_row}>
+                    <p className={styles.footer_label}>Компания</p>
+                    <Link href={"/company/terms"}>Условия</Link>
+                    <Link href={"/company/privacy"}>Конфиденциальность</Link>
+                    <Link href={"/company/rules"}>Правила</Link>
+                  </section>
+                  <section className={styles.footer_row}>
+                    <p className={styles.footer_label}>Ресурсы</p>
+                    <Link href={"/blog"}>Блог</Link>
+                    <Link href={"/docs"}>Документация</Link>
+                    <a href="https://github.com/">GitHub</a>
+                  </section>
+                  <section className={styles.footer_row}>
+                    <p className={styles.footer_label}>Соц. сети</p>
+                    <a href="https://discord.com/" rel="noopener noreferrer" target="_blank">Discord</a>
+                    <a href="https://t.me/" rel="noopener noreferrer" target="_blank">Telegram</a>
+                    <a href="https://vk.com/" rel="noopener noreferrer" target="_blank">Вконтакте</a>
+                  </section>
                 </section>
                 <section className={styles.footer_buttons}>
                   <OutlineButton isGradient={true}  text="Создать аккаунт" redirectTo="/singUp"/>
