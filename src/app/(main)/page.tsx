@@ -1,6 +1,4 @@
-import { GradientButton, OutlineButton } from "@/components/ui/buttons";
-import { Logo } from "@/components/label/Logo";
-import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
+import styles from "@/styles/(main)/page.module.scss";
 
 import MainPattern from '$/assets/patterns/MainBackground.svg'
 import Notify from '$/assets/icons/notify.svg'
@@ -11,9 +9,12 @@ import CodeTogether from '$/assets/icons/code_together.svg'
 import FeedbackLogo from '$/assets/icons/feedback.svg'
 import HelpLogo from '$/assets/icons/help.svg'
 
-import styles from "@/styles/(main)/page.module.scss";
 import TextAnimation from "@/components/label/textAnimation";
 import { Search, Select, MultiSelect } from "@/components/ui/input";
+import Triangle from "@/components/ui/categories";
+import { GradientButton, OutlineButton } from "@/components/ui/buttons";
+import { Logo } from "@/components/label/Logo";
+import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
 
 
 export default function Home() {
@@ -51,6 +52,21 @@ export default function Home() {
       id: "down-up"
     }
   ]
+
+  const data = [
+    { id: 1, content: 'Item 1' },
+    { id: 2, content: 'Item 2' },
+    { id: 3, content: 'Item 3' },
+    { id: 4, content: 'Item 4' },
+    { id: 5, content: 'Item 5' },
+    { id: 6, content: 'Item 6' },
+    { id: 7, content: 'Item 7' },
+    { id: 8, content: 'Item 8' },
+    { id: 9, content: 'Item 9' },
+    { id: 10, content: 'Item 10' },
+    { id: 11, content: 'Item 11' },
+    { id: 12, content: 'Item 12' },
+  ];
 
   return (
     <>
@@ -93,10 +109,10 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.categories_layout}>
-          <p>Популярные</p>
-          <h1>категории</h1>
-          <div className={styles.categories}>
-
+        <p>Популярные</p>
+        <h1>категории</h1>
+        <div className={styles.categories}>
+          <Triangle data={data} /> 
         </div>
       </div>
       <div className={styles.players_section}>
