@@ -18,6 +18,16 @@ const DarkButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) =
     );
 }
 
+const DarkLightButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
+    const router = useRouter();  
+
+    return (
+        <button className={`${styles.darkLightButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
+            {text}
+        </button>
+    );
+}
+
 const OutlineButton = ({ text, isGradient=false, redirectTo}: {text: string; isGradient?: boolean; redirectTo?: string;}) => {
     const router = useRouter();  
     const elementId = addRandomChars("outline-button-gradient");
@@ -48,4 +58,4 @@ const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string
     );
 }
 
-export {DarkButton, OutlineButton, GradientButton};
+export {DarkLightButton, DarkButton, OutlineButton, GradientButton};
