@@ -1,6 +1,7 @@
 import { TextLogo, Logo } from "@/components/label/Logo";
 import { InitNavBar } from "@/components/ui/navBar";
 import { DarkButton, OutlineButton } from "@/components/ui/buttons";
+import { MobileHeader } from "@/components/ui/header"
 
 import SeachIcon from "$/assets/icons/search.svg"
 import BurgerIcon from "$/assets/icons/burger.svg"
@@ -55,24 +56,9 @@ export default function MainLayout({
               </section>
             </div>
           </header>
-          <header className={styles.mobile_header}>
-            <div className={styles.content}>
-              <section className={styles.logo}>
-                <Logo />
-              </section>
-              <section className={styles.open_nav}>
-                <button>
-                  <SeachIcon/>
-                  <span>Поиск</span>
-                </button>
-              </section>
-              <section className={styles.burger}>
-                <button>
-                  <BurgerIcon/>
-                </button>
-              </section>
-            </div>
-          </header>
+          <div className={styles.mobile_header}>
+            <MobileHeader/>
+          </div>
           <div className={styles.children}>
             <div className={styles.content}>
               {children}

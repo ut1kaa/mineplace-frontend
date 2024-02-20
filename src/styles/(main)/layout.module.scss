@@ -33,53 +33,8 @@
 }
 
 .mobile_header {
-    visibility: hidden;
-
     width: 100%;
-    justify-content: center;
-    color: var(--second-text-hex);
-
-    padding: 0.7rem 0;
-    border-top-right-radius: var(--border-radius);
-    border-top-left-radius: var(--border-radius);
-    z-index: 1;
-    display: flex;
-    position: fixed;
-    background-color: var(--color_track);
-    bottom: 0;
-
-    .content {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .logo {
-        color: #ffffff;
-        height: 38px;
-    }
-
-    button {
-        border: 0 solid transparent;
-        background-color: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 38px;
-    }
-
-    path {
-        stroke:var(--second-text-hex);
-    }
-
-    .open_nav {
-        span {
-            color: var(--second-text-hex);
-            font-size: 16px;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
-    }
-
+    visibility: hidden;
 }
 
 .navRows {
