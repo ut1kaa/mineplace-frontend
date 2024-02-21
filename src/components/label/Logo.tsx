@@ -6,7 +6,9 @@ import Link from "next/link";
 const Logo = () => {
     return (
         <>
-            <LogoSvg width={"100%"} height={"100%"} />
+            <Link href={"/"}>
+                <LogoSvg width={"100%"} height={"100%"} />
+            </Link>
         </>
     );
 }
