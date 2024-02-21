@@ -18,11 +18,11 @@ const DarkButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) =
     );
 }
 
-const DarkLightButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
+const CustomButton = ({ text, redirectTo, colors, ref}: {text: string; redirectTo?: string, colors: {background_color: string, text_color: string}, ref?: React.RefObject<any>}) => {
     const router = useRouter();  
 
     return (
-        <button className={`${styles.darkLightButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
+        <button ref={ref} className={`${styles.customButton} ${styles.action}`} style={{backgroundColor: colors.background_color, color: colors.text_color}} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
             {text}
         </button>
     );
@@ -58,4 +58,4 @@ const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string
     );
 }
 
-export {DarkLightButton, DarkButton, OutlineButton, GradientButton};
+export {CustomButton, DarkButton, OutlineButton, GradientButton};

@@ -17,20 +17,19 @@
     transition: filter 300ms, transform 100ms;
 }
 
-.darkLightButton {
+.customButton {
     cursor: pointer;
 
     height: 38px;
-    width: 96%;
+    width: 100%;
     border: 0 solid transparent;
     border-radius: var(--border-radius);
-    background-color: var(--darkLightButton-hex);
-    color: var(--darkLightButton-text-hex);
+    padding: 0 2rem;
     
     font-size: 16px;
     font-weight: 500;
 
-    transition: filter 300ms, transform 100ms;
+    transition: filter 300ms, transform 100ms, 200ms;
 }
 
 
