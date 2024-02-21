@@ -7,10 +7,23 @@ $block-outline-gradient-start: #00000000;
 $block-outline-gradient-stop: #ffffff45;
 
 
+$lightButton-hex: #604A87;
+$lightButton-text-hex: #BC95FF;
+
+$darkLightButton-hex: #453561;
+$darkLightButton-text-hex: #9776cd;
+
+
 :export {
-    outlineButton_gradient_start: $outlineButton-gradient-start;
-    outlineButton_gradient_stop: $outlineButton-gradient-stop;
-    margin_px: $margin_px;
-    block_outline_gradient_start: $block-outline-gradient-start;
-    block_outline_gradient_stop: $block-outline-gradient-stop;
-  }
+  outlineButton_gradient_start: $outlineButton-gradient-start;
+  outlineButton_gradient_stop: $outlineButton-gradient-stop;
+  margin_px: $margin_px;
+  block_outline_gradient_start: $block-outline-gradient-start;
+  block_outline_gradient_stop: $block-outline-gradient-stop;
+  
+  lightButton_hex: $lightButton-hex;
+  lightButton_text_hex: $lightButton-text-hex;
+
+  darkLightButton_hex: $darkLightButton-hex;
+  darkLightButton_text_hex: $darkLightButton-text-hex;
+}

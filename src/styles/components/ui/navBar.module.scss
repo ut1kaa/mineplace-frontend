@@ -12,7 +12,7 @@
 
         };
     }
-
+    
     .activeTabLine {
         position: absolute;
         // top: 12px;
@@ -34,3 +34,19 @@
     }
 }
 
+.mobile_layout {
+    width: 100%;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+
+    .children {
+        // height: 38px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
