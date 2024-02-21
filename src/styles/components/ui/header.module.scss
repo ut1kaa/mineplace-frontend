@@ -39,6 +39,8 @@
         justify-content: start;
         align-items: center;
 
+        padding: 1rem 1rem;
+
         & > * {
             margin-bottom: 0.5rem;
         }
@@ -50,11 +52,21 @@
         z-index: -1;
         position: absolute;
         transition: 0.3s ease;
+        padding: 1rem 1rem;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+    
     }
 
     .activeTab {
         transform: translateY(-170px);
     }
+
+    .activeTabSearch {
+        transform: translateY(-320px);
+    }
+
 
     .inactiveTab {
         transform: translateY(0px);
