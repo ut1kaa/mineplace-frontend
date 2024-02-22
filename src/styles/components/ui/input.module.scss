@@ -67,7 +67,7 @@
 
         display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: flex-end;
 
         top: 0;
         right: 0;
@@ -93,7 +93,7 @@
 
         .activeDrop, .inctiveDrop {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             margin: 0 1rem;
         }
     }
@@ -226,7 +226,7 @@
 
         display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: flex-end;
 
         top: 0;
         right: 0;
@@ -252,7 +252,7 @@
 
         .activeDrop, .inctiveDrop {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             margin: 0 1rem;
         }
     }
