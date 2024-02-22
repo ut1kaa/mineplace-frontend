@@ -18,11 +18,11 @@ const DarkButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) =
     );
 }
 
-const CustomButton = ({ text, redirectTo, colors, ref}: {text: string; redirectTo?: string, colors: {background_color: string, text_color: string}, ref?: React.RefObject<any>}) => {
+const CustomButton = ({ text, redirectTo, colors, innerKey }: {text: string; redirectTo?: string, colors: {background_color: string, text_color: string}, innerKey?: string}) => {
     const router = useRouter();  
 
     return (
-        <button ref={ref} className={`${styles.customButton} ${styles.action}`} style={{backgroundColor: colors.background_color, color: colors.text_color}} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
+        <button key={innerKey} className={`${styles.customButton} ${styles.action}`} style={{backgroundColor: colors.background_color, color: colors.text_color}} onClick={redirectTo ? () => router.push(redirectTo) : () => ""}>
             {text}
         </button>
     );
