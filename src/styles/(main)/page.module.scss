@@ -38,6 +38,10 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    .animatetedLabel {
+        margin-bottom: 1rem;
+    }
     
 
     .content {
@@ -46,6 +50,7 @@
 
     button {
         margin-right: 16px;
+        margin-bottom: 1rem;
     }
 
     .mainPattern {
@@ -69,6 +74,7 @@
     width: 104vw;
     padding: 7rem 0;
     .line {
+        padding: 0 4rem;
         width: 100%;
         height: 230px;
         background-image: linear-gradient(300deg, #ffffff00, #ffffff0f);
@@ -188,7 +194,7 @@
                 .search_content {
                     display: flex;
                     flex-direction: column;
-                    align-items: end;
+                    align-items: flex-end;
                     .selectLayout {
                         width: 40%;
                         p {
@@ -227,12 +233,12 @@
 
                     .chat_message_left {
                         display: flex;
-                        justify-content: start;
+                        justify-content: flex-start;
                     }
 
                     .chat_message_right {
                         display: flex;
-                        justify-content: end;
+                        justify-content: flex-end;
                     }
 
                     & > * {
@@ -322,7 +328,7 @@
 
                     position: absolute;
                     display: flex;
-                    align-items: end;
+                    align-items: flex-end;
 
                     transform: translate(-50%, 130%);
                     .icon {
@@ -396,3 +402,84 @@
         background: var(--background-black-transperent-gradinet);
     }
 }
+
+@media only screen and (max-width: 1140px) {
+    @media only screen and (max-width: 900px) {
+        .main {        
+            h2 {
+                font-size: 64px;
+            }
+        
+            h1 {
+                font-size: 72px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+
+            .content {
+                max-width: 480px;
+            }
+        
+        }
+
+        @media only screen and (max-width: 750px) {
+            .main {        
+                h2 {
+                    font-size: 46px;
+                }
+            
+                h1 {
+                    font-size: 64px;
+                }
+    
+                .content {
+                    max-width: 420px;
+                }
+            
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            .main {   
+                flex-direction: column-reverse;
+                display: flex;
+                align-items: center;
+                
+                // justify-content: space-between;
+
+                text-align: center; 
+                .animatetedLabel > * > * {
+                    justify-content: center;
+                }
+
+                h2 {
+                    font-size: 38px;
+                }
+            
+                h1 {
+                    font-size: 50px;
+                }
+    
+                .content {
+                    max-width: 100%;
+                }
+
+                .logo {
+
+                    width: 200px;
+                    height: 200px;
+                }
+                
+                @media only screen and (max-width: 400px) {
+                    button {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
