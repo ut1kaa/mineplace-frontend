@@ -18,9 +18,9 @@
   --label-text-gradient-moz: -moz-linear-gradient(top left, #FFFFFF 25%, #787878 50%, #FFFFFF 75%);
   --label-text-gradient-webkit: -webkit-linear-gradient(top left, #FFFFFF 25%, #787878 50%, #FFFFFF 75%);
 
-  --second-label-text-gradient: linear-gradient(45deg, #9977CE 15%, #543883, #563988);
-  --second-label-text-gradient-moz: -moz-linear-gradient(bottom left 15%, #9977CE, #543883, #563988);
-  --second-label-text-gradient-webkit: -webkit-linear-gradient(bottom left 15%, #9977CE, #543883, #563988);
+  --second-label-text-gradient: linear-gradient(45deg, #9977CE 30%, #543883 75%,#563988 85%);
+  --second-label-text-gradient-moz: -moz-linear-gradient(bottom left 15%, #9977CE 30%, #543883 75%,#563988 85%);
+  --second-label-text-gradient-webkit: -webkit-linear-gradient(bottom left 15%, #9977CE 30%, #543883 75%,#563988 85%);
 
   --darkButton-hex: #281E39;
   --darkButton-text-hex: #745AA0;
