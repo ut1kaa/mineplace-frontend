@@ -98,7 +98,7 @@
                 .footer_row {
                     position: relative;
                     margin: 1rem 3rem;
-                    justify-content: end;
+                    justify-content: flex-end;
                     width: 150px;
                     & > * {
                         margin-bottom: 15px;
