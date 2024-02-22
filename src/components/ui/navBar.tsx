@@ -69,14 +69,14 @@ const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navLis
                         <div className={styles.children} key={link.to}>
                             {/* <Link ref={link.ref} href={link.to}>{link.name}</Link> */}
                             <CustomButton
-                            // colors={{background_color: virables.darkLightButton_hex, text_color: virables.darkLightButton_text_hex}}
-                            colors={{
-                                background_color: activeTab >= 0 && activeTab < navList.length && navList[activeTab].ref === link.ref ? virables.lightButton_hex : virables.darkLightButton_hex,
-                                text_color: activeTab >= 0 && activeTab < navList.length && navList[activeTab].ref === link.ref ? virables.lightButton_text_hex : virables.darkLightButton_text_hex
-                            }}
-                            ref={link.ref}
-                            text={link.name} 
-                            redirectTo={link.to}/>
+                                colors={{
+                                    background_color: activeTab >= 0 && activeTab < navList.length && navList[activeTab].to === link.to ? virables.lightButton_hex : virables.darkLightButton_hex,
+                                    text_color: activeTab >= 0 && activeTab < navList.length && navList[activeTab].to === link.to ? virables.lightButton_text_hex : virables.darkLightButton_text_hex
+                                }}
+                                innerKey={link.to}
+                                text={link.name} 
+                                redirectTo={link.to}
+                            />
                         </div>
                     )))}
                 </nav> ) : (
