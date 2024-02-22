@@ -76,7 +76,9 @@ export default function Home() {
             <h2>Здесь можно найти</h2>
             <h1>Minecraft</h1>
           </span>
-          <h2 className={styles.animatetedLabel}><TextAnimation texts={texts}/></h2>
+          <h2 className={styles.animatetedLabel}>
+            <TextAnimation texts={texts}/>
+          </h2>
           <p>Играй, делись, изучай Minecraft дополнения
             через нашу открытую платформу созданную для сообщества.
           </p>
@@ -84,7 +86,7 @@ export default function Home() {
           <OutlineButton redirectTo="/signUp" text="Создать аккаунт"/>
         </div>
         <div className={styles.logo}>
-          <Logo />
+          <Logo link={false}  />
         </div>
         <div className={styles.mainPattern}>
           <MainPattern/>
