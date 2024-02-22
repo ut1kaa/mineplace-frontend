@@ -70,7 +70,6 @@ const MobileHeader = () => {
                 <CustomButton colors={{background_color: virables.lightButton_hex, text_color: virables.lightButton_text_hex}} text="Войти" redirectTo="/singIn"/>
                 <CustomButton colors={{background_color: virables.darkLightButton_hex, text_color: virables.darkLightButton_text_hex}} redirectTo="/singUp" text="Создать аккаунт"/>
             </div>
-
             <div className={`${styles.searchTab} ${showSearch === true ? styles.activeTabSearch : styles.inactiveTab}`}>
                 <InitNavBar navList={test_links} activeHighligth={true} mobile={true}/>
             </div>
