@@ -31,12 +31,6 @@ const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navLis
             transition: "transform 0.2s ease-in-out, opacity 0.1s ease-in-out",
         }
 
-        // if (mobile) {
-        //     activeTabSize = {
-
-        //     }
-        // }
-    
         useLayoutEffect(() => {
             // console.log(navList[activeTab]);
             if ((activeTab >= 0 && activeTab <= navList.length) && !mobile)  {
