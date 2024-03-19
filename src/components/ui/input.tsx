@@ -118,7 +118,7 @@ const Select = ({info, options, standartSelectedOption} : {info: {label: string,
 
     return (
         <div className={styles.Select}>
-            <OutlineSubBlock style={{ height: "auto", width: "100%", minHeight: "55px", padding: "1rem", position: "relative" }}>
+            <OutlineSubBlock style={{ height: "auto", width: "100%", minHeight: "55px", padding: "1rem", paddingRight:"2rem", position: "relative" }}>
                 <label htmlFor={elementId} style={{ opacity: selectedOption ? 0 : 1 }}>{info.label}</label>
                 <div className={styles.selectedOption} onClick={() => setShowOptions(!showOptions)}>
                     {selectedOption ? selectedOption.name : ""}
