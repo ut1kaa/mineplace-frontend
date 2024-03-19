@@ -210,6 +210,7 @@
 }
 
 .Select {
+    
     position: relative;
     // min-height: 55px;
     min-width: 40%;
@@ -298,6 +299,8 @@
             }
             
             option {
+                // overflow: hidden;
+                // text-overflow: ellipsis;
                 width: 100%;
                 cursor: pointer;
                 display: flex;
@@ -321,10 +324,16 @@
 
     
     .selectedOption {
+        // padding: 1rem;
+        // white-space: no;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
         user-select: none;
         display: flex;
         align-items: center;
-        width: 90%;
+        width: 70%;
         height: 100%;
     }
 }
