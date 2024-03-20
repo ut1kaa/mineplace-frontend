@@ -3,7 +3,7 @@ import {addRandomChars} from "@/utils/idGenerator";
 import styles from "@/styles/components/ui/outlineBlocks.module.scss";
 import virables from "@/styles/exportedVirables.module.scss";
 
-const OutlineBlock = ({ children }: { children: React.ReactNode; }) => {
+const OutlineBlock = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => {
     const elementId = addRandomChars("outline-block-gradient");
     const url = `url(#${elementId})`;
 
@@ -18,7 +18,7 @@ const OutlineBlock = ({ children }: { children: React.ReactNode; }) => {
                 </defs>
                 <rect x="0" y="0" rx="25" fill="none" stroke={url} width="100%" height="100%"></rect>
             </svg>
-            <div className={styles.content}>
+            <div className={styles.content}  style={style}>
                 {children}
             </div>
         </div>
