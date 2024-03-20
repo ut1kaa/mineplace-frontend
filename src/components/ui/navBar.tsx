@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useRef, useLayoutEffect, useState} from 'react';
 import virables from "@/styles/exportedVirables.module.scss";
 import { CustomButton } from "@/components/ui/buttons";
@@ -9,15 +9,20 @@ import styles from "@/styles/components/ui/navBar.module.scss"
 import variables from "@/styles/exportedVirables.module.scss";
 
 
-const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navList:{ name: string; to: string; ref?: React.RefObject<any>;}[];  mobile?: boolean; activeHighligth?: boolean}) => {
+const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navList:{ name: string; to: string; page_name: string; ref?: React.RefObject<any>;}[];  mobile?: boolean; activeHighligth?: boolean}) => {
     var activeTabSize;
 
     var activeTab: number;
 
     if (activeHighligth) {
         const pathname = usePathname()
+        const searchParams = useSearchParams()
+        // console.log(searchParams.get('add-on'))
     
-        activeTab = navList.findIndex(item => item.to === pathname);
+        // activeTab = navList.findIndex(item => item.to === pathname);
+        activeTab = navList.findIndex(item => item.page_name === searchParams.get('add-on'));
+        // console.log(navList)
+        // console.log(activeTab)
     
         const [width, setWidth] = useState(0);
         const [left, setLeft] = useState(0);
