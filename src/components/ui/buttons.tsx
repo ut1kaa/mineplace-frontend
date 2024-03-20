@@ -6,6 +6,7 @@ import virables from "@/styles/exportedVirables.module.scss";
 import {addRandomChars} from "@/utils/idGenerator";
 
 import { useRouter } from 'next/navigation'
+import { OutlineSubBlock } from "./outlineBlocks";
 
 
 const DarkButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
@@ -58,4 +59,30 @@ const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string
     );
 }
 
-export {CustomButton, DarkButton, OutlineButton, GradientButton};
+const BlockButton = ({children, redirectTo}: {children?: React.ReactNode; redirectTo?: string; }) => {
+    const router = useRouter();  
+    const elementId = addRandomChars("outline-button-gradient");
+    const url = `url(#${elementId})`;
+
+    return (
+        <button className={`${styles.BlockButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
+            <OutlineSubBlock style={{height:"100%", width:"100%"}}>
+                <div className={styles.BlockButtonContent}>
+                    {children}
+                </div>
+            </OutlineSubBlock>
+        </button>
+    );
+
+    // return (
+    //     <OutlineSubBlock style={{height:"55px", width:"100%"}}>
+    //     <div className={styles.search}>
+    //         <input type="text" value={value} onChange={handleChange} placeholder="Поиск..." id={elementId} name="search"/>
+    //         <SeachIcon />
+    //         <label htmlFor={elementId}>Поиск...</label>
+    //     </div>
+    //   </OutlineSubBlock>
+    // );
+}
+
+export {CustomButton, DarkButton, OutlineButton, GradientButton, BlockButton};
