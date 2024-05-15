@@ -19,23 +19,28 @@ const MobileHeader = () => {
     const test_links = [
         {
           name: "Моды",
-          to: "/mods",
+          to: "/search?add-on=mods",
+          page_name: "mods",
         },
         {
           name: "Плагины",
-          to: "/plugins",
+          to: "/search?add-on=plugins",
+          page_name: "plugins",
         },
         {
           name: "Датапаки",
-          to: "/datapacks",
+          to: "/search?add-on=datapacks",
+          page_name: "datapacks",
         },
         {
           name: "Шейдеры",
-          to: "/shaders",
+          to: "/search?add-on=shaders",
+          page_name: "shaders",
         },
         {
           name: "Ресурспаки",
-          to: "/resourcepacks",
+          to: "/search?add-on=resourcepacks",
+          page_name: "resourcepacks",
         },
       ];
 
