@@ -1,0 +1,35 @@
+.main_block {
+    max-width: 500px;
+    // padding: 2rem 2rem;
+}
+
+.inner {
+    padding: 0 1rem;
+
+    // h1 {
+    //     margin-bottom: 3rem;
+    // }
+
+    &  > *:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    p {
+        color: var(--second-text-hex)
+    }
+
+    a {
+        color: var(--links-hex);
+    }
+}
+
+.bottom_part {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    button {
+        margin-bottom: 1rem;
+    }
+}
+
