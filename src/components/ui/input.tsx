@@ -29,6 +29,26 @@ const Search = ({standartValue}: {standartValue?: string}) => {
     );
 }
 
+const CustomInput = ({icon, inputType, inputName, placeHolder, standartValue}:
+     {icon: any, inputType: string, inputName: string, placeHolder: string, standartValue?: string}) => {
+    const [value, setValue] = useState(standartValue);
+    const elementId = addRandomChars("customInput");
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    }
+
+    return (
+        <OutlineSubBlock style={{height:"55px", width:"100%"}}>
+            <div className={styles.search}>
+                <input type={inputType} value={value} onChange={handleChange} placeholder={placeHolder} id={elementId} name={inputName}/>
+                {icon}
+                <label htmlFor={elementId}>{placeHolder}</label>
+            </div>
+        </OutlineSubBlock>
+    )
+}
+
 const MultiSelect = ({info, options, standartSelectedOptions=[]} : {info: {label: string, name: string}, options: {name: string, id: string}[]; standartSelectedOptions?: {name: string, id: string}[]}) => {
     const elementId = addRandomChars("multiselect");
 
@@ -151,4 +171,13 @@ const Select = ({info, options, standartSelectedOption} : {info: {label: string,
     );
 }
 
-export {Search, MultiSelect, Select};
+const CheckBox = ({label, children} : {label?: string, children?: JSX.Element}) => {
+    return (
+        <div className={styles.checkBox}>
+          <input type="checkbox" id="checkbox" className={styles.input} />
+          {label ? <label htmlFor="checkbox" className={styles.label}>{label}</label> : ""}
+        </div>
+      );
+}
+
+export {Search, MultiSelect, Select, CustomInput, CheckBox};
