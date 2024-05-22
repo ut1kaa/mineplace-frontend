@@ -1,0 +1,57 @@
+.addon_block {
+    width: 100%;
+    display: flex;
+    justify-content: row;
+    color: var(--second-text-hex);
+    // margin-right: 1rem;
+
+    .left_side {
+        & > * {
+            margin-bottom: 0.5rem;
+        }
+        width: 300px;
+        .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            flex-direction: column;
+            // align-items: center;
+        }
+
+    }
+
+    .right_side {
+        & > * {
+            margin-bottom: 0.5rem;
+        }
+
+        width: 100%;
+        margin-left: 0.5rem;
+        .search_panel {
+            display: flex;
+
+            .search_panel_layout{
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .addon_content {
+
+        }
+    }
+    
+}
+
+.navRows {
+    & > * {
+        display: flex;
+        flex-direction: row;
+
+        & > *:not(:first-child) {
+            margin-left: 30px;
+        }
+    }
+}
