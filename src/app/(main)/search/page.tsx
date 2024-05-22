@@ -310,7 +310,7 @@ export default async function Mods() {
                             </div>
                           </div>
                           <div className={styles.info}>
-                            <p>Погрузитесь в мир Майнкрафта с уникальными бимомами, звуками мурчания и новыми...</p>
+                            <p>Погрузитесь в мир Майнкрафта с уникальными биомами, звуками мурчания и новыми...</p>
                             <div className={styles.settings}> 
                               <div><div className={styles.Icon}><WorldGeneration /></div><b>Клиент или сервер</b></div>
                               <div><div className={styles.Icon}><Mobs /></div>Мобы</div>
