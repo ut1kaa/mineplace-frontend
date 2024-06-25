@@ -53,7 +53,7 @@ export default function MainLayout({
                 <TextLogo />
               </section>
               <section className={styles.navRows}>
-                <InitNavBar navList={test_links} activeHighligth={true}/>
+                <InitNavBar navList={test_links} activeHighligth={true} activeParam={"add-on"}/>
               </section>
               <section className={styles.buttonsRows}>
                 <DarkButton text="Войти" redirectTo="/singIn"/>

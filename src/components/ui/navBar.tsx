@@ -9,7 +9,7 @@ import styles from "@/styles/components/ui/navBar.module.scss"
 import variables from "@/styles/exportedVirables.module.scss";
 
 
-const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navList:{ name: string; to: string; page_name: string; ref?: React.RefObject<any>;}[];  mobile?: boolean; activeHighligth?: boolean}) => {
+const InitNavBar = ({ navList, activeHighligth = false, activeParam = "none", mobile = false }: {navList:{ name: string; to: string; page_name: string; ref?: React.RefObject<any>;}[];  mobile?: boolean; activeHighligth?: boolean, activeParam?: string}) => {
     var activeTabSize;
 
     var activeTab: number;
@@ -20,7 +20,7 @@ const InitNavBar = ({ navList, activeHighligth = false, mobile = false}: {navLis
         // console.log(searchParams.get('add-on'))
     
         // activeTab = navList.findIndex(item => item.to === pathname);
-        activeTab = navList.findIndex(item => item.page_name === searchParams.get('add-on'));
+        activeTab = navList.findIndex(item => item.page_name === searchParams.get(activeParam));
         // console.log(navList)
         // console.log(activeTab)
     

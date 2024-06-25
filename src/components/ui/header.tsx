@@ -76,7 +76,7 @@ const MobileHeader = () => {
                 <CustomButton colors={{background_color: virables.darkLightButton_hex, text_color: virables.darkLightButton_text_hex}} redirectTo="/singUp" text="Создать аккаунт"/>
             </div>
             <div className={`${styles.searchTab} ${showSearch === true ? styles.activeTabSearch : styles.inactiveTab}`}>
-                <InitNavBar navList={test_links} activeHighligth={true} mobile={true}/>
+                <InitNavBar navList={test_links} activeHighligth={true} mobile={true} activeParam={"add-on"}/>
             </div>
           </div>
     );
