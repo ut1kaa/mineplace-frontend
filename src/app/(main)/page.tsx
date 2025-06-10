@@ -12,12 +12,13 @@ import HelpLogo from '$/assets/icons/help.svg'
 import TextAnimation from "@/components/label/textAnimation";
 import { Search, Select, MultiSelect } from "@/components/ui/input";
 import Triangle from "@/components/ui/categories";
-import { GradientButton, OutlineButton } from "@/components/ui/buttons";
+import AuthButton, { GradientButton, OutlineButton } from "@/components/ui/buttons";
 import { Logo } from "@/components/label/Logo";
 import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
 
 
 export default function Home() {
+  
   const texts = ["моды", "плагины", "датапаки", "шейдеры", "ресурспаки"];
 
 
@@ -83,7 +84,7 @@ export default function Home() {
             через нашу открытую платформу созданную для сообщества.
           </p>
           <GradientButton redirectTo="/search" text="Исследовать"/>
-          <OutlineButton redirectTo="/signUp" text="Создать аккаунт"/>
+          <AuthButton />
         </div>
         <div className={styles.logo}>
           <Logo link={false}  />

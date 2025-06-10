@@ -1,3 +1,4 @@
+"use client"
 import styles from "@/styles/(main)/user/page.module.scss";
 
 import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
@@ -49,8 +50,148 @@ import Heart from '$/assets/icons/heart.svg';
 import Update from '$/assets/icons/update.svg';
 import Download from '$/assets/icons/download.svg';
 import { InitNavBar } from "@/components/ui/navBar";
+import { useEffect, useState } from "react";
+import { isTokenValid } from "../../utils/token";
+import { notFound } from 'next/navigation';
 
-export default async function Addon() {
+interface AddOn {
+    uuid: string;
+    user_uuid: string;
+    username: string;
+    name: string;
+    type: string;
+    short_description: string;
+    description: string;
+    downloads: number;
+    publish_date: string; 
+    update_date: string; 
+    likes_count: number;
+}
+
+const formatNumber = (num: number): string => {
+    if (num >= 1_000_000) {
+        return (num / 1_000_000).toFixed(2) + 'М';
+    }
+    if (num >= 1_000) {
+        return (num / 1_000).toFixed(2) + 'К';
+    }
+    return num.toLocaleString();
+};
+
+const formatRelativeDate = (dateString: string): string => {
+    const now = new Date();
+    const updateDate = new Date(dateString);
+    const diffTime = Math.abs(now.getTime() - updateDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return 'Обновлено сегодня';
+    if (diffDays === 1) return 'Обновлено вчера';
+    if (diffDays <= 7) return `Обновлено ${diffDays} дн. назад`;
+    return `Обновлено ${updateDate.toLocaleDateString('ru-RU')}`;
+};
+
+export default function Addon() {
+    const [user, setUser] = useState<{ uuid: string; username: string; email: string; paasword_hash: string; profile_picture?: string; created_at: string} | null>(null);
+    const [loadingUser, setLoadingUser] = useState(true);
+    const [addons, setAddons] = useState<AddOn[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const fetchUserData = async () => {
+      setLoadingUser(true);
+      const token = localStorage.getItem("token");
+
+      if (!isTokenValid(token)) {
+        setUser(null);
+        setLoadingUser(false);
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/me", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          const errorData = await response.json();
+          console.error("Ошибка при получении данных пользователя:", errorData.error);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Сетевая ошибка:", error);
+        setUser(null);
+      } finally {
+        setLoadingUser(false); 
+      }
+    };
+  
+    useEffect(() => {
+      fetchUserData();
+    }, []); 
+
+    useEffect(() => {
+      if (!loadingUser && user === null) {
+        notFound();
+      }
+    }, [user, loadingUser]);
+
+    const fetchAddons = async (id: string) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`/api/user/get_addons/${id}`, {
+                method: "GET",
+            });
+            const data = await response.json();
+            if (response.ok) {
+                
+                setAddons(data.items);
+            } else {
+                setAddons([]);
+                setError(data.error);
+            }
+            
+        } catch (err: any) {
+            console.error('Ошибка при загрузке аддонов:', err);
+            if (err.response.data && typeof err.response.data === 'object') {
+                if (err.response.data.detail) {
+                    setError(err.response.data.detail);
+                } else if (err.response.data.error && typeof err.response.data.error === 'string') {
+                    setError(err.response.data.error);
+                } else if (err.response.data.msg) { 
+                    setError(err.response.data.msg);
+                }
+                else {
+                    setError(JSON.stringify(err.response.data, null, 2));
+                }
+            } else if (typeof err.response.data === 'string') {
+                setError(err.response.data);
+            } else {
+                setError(err.message || 'Неизвестная ошибка при загрузке аддонов от сервера.');
+            }
+            setAddons([]);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+      if (user) {
+        fetchAddons(user.uuid);
+      } 
+    }, [user]);
+
+    const loadingMessage = loading && <div className={styles.loading_indicator}>Загрузка аддонов...</div>;
+    const errorMessage = error && <div className={styles.error_message}>Ошибка: {error}</div>;
+    const noResultsMessage = !loading && !error && addons.length === 0 && (
+        <div className={styles.no_results}>Аддоны не найдены.</div>
+    );
 
     const test_links = [
         {
@@ -95,18 +236,25 @@ export default async function Addon() {
                             <div className={styles.name}>
                                 <Image src={userPic} alt="userpic" width={100} height={100} />
                                 <div>
-                                <h1>catuser123</h1>
+                                <h1>{user?.username}</h1>
                                 <p>Создатель</p>
                                 </div>
                             </div>
-                            <p>Кот-хакер который пишет моды для майнкрафта про котов.</p>
+                            {/* <p>Кот-хакер который пишет моды для майнкрафта про котов.</p> */}
                             <hr/>
                             <p>1.34 М скачиваний</p>
                             <p>3,353 подписок на проекты</p>
-                            <p>Зарегистрировался 1 месяц назад</p>
+                            <p>Зарегистрирован: <br/>{user?.created_at && new Date(user.created_at).toLocaleString("ru-RU", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit"
+                            })}</p>
                             <hr/>
+                            <GradientButton text={"Добавить домен"}/>
                             <div>
-                                <p>ID пользователя</p> <p>FGe23Be</p>
+                                <p>ID пользователя</p> <p>{user?.uuid}</p>
                             </div>
                         </div>
                         </OutlineBlock>
@@ -123,40 +271,66 @@ export default async function Addon() {
                         </OutlineBlock>
                     </div>
                     <div className={styles.search_result}>
+                  {loadingMessage}
+                  {errorMessage}
+                  {noResultsMessage}
                   <div className={styles.result}>
-                    <OutlineBlock style={{padding: "0"}}>
-                        <div className={styles.result_block}>
-                          <Image className={styles.background}src={backCard} alt="back" width={160} height={60} />
-                          <div className={styles.name}>
-                            <Image src={profilePic} alt="profilepic" width={100} height={100} />
-                            <div>
-                              <h1>Catumn</h1>
-                              <p>от <Link href=""><u>catuser123</u></Link></p>
+                    {addons.map((addon) => ( 
+                    <OutlineBlock style={{ padding: "0" }} key={addon.uuid}>
+                        <Link className={styles.result_block} href={`/add-on/${addon.uuid}?page=discription`}>
+                            <Image
+                                className={styles.background}
+                                src={backCard}
+                                alt={addon.name}
+                                width={160}
+                                height={60}
+                            />
+                            <div className={styles.name}>
+                                <Image
+                                    src={profilePic}
+                                    alt={`Профиль ${addon.user_uuid}`}
+                                    width={100}
+                                    height={100}
+                                />
+                                <div>
+                                    <h1>{addon.name}</h1>
+                                    <p>
+                                        от <Link href={`/user/${addon.user_uuid}`}>
+                                            <u>{addon.username}</u>
+                                        </Link>
+                                    </p>
+                                </div>
                             </div>
-                          </div>
-                          <div className={styles.info}>
-                            <p>Погрузитесь в мир Майнкрафта с уникальными биомами, звуками мурчания и новыми...</p>
-                            <div className={styles.settings}> 
-                              <div><div className={styles.Icon}><WorldGeneration /></div><b>Клиент или сервер</b></div>
-                              <div><div className={styles.Icon}><Mobs /></div>Мобы</div>
-                              <div><div className={styles.Icon}><Fabric /></div>Fabric</div>
+                            <div className={styles.info}>
+                                <p className={styles.short_description_text}>{addon.short_description}</p>
+                                <div className={styles.settings}>
+                                    {addon.type === 'map' && (
+                                        <div><div className={styles.Icon}><WorldGeneration /></div><b>Карта</b></div>
+                                    )}
+                                    {addon.type === 'model' && (
+                                        <div><div className={styles.Icon}><Mobs /></div><b>Модель</b></div>
+                                    )}
+                                </div>
                             </div>
-                          </div>
-                          <div className={styles.stat}>
-                            <div className={styles.left}>
-                              <div>
-                                <div className={styles.Icon}><Download/></div><b>1.34М</b>
-                              </div>
-                              <div>
-                                <div className={styles.Icon}><Heart/></div><b>3,353</b>
-                              </div>
+                            <div className={styles.stat}>
+                                <div className={styles.left}>
+                                    <div>
+                                        <div className={styles.Icon}><Download /></div>
+                                        <b>{formatNumber(addon.downloads)}</b>
+                                    </div>
+                                    <div>
+                                        <div className={styles.Icon}><Heart /></div>
+                                        <b>{addon.likes_count.toLocaleString()}</b>
+                                    </div>
+                                </div>
+                                <div className={styles.right}>
+                                    <div className={styles.Icon}><Update /></div>
+                                    <p>{formatRelativeDate(addon.update_date)}</p>
+                                </div>
                             </div>
-                            <div className={styles.right}>
-                              <div className={styles.Icon}><Update/></div><p>Обновлено вчера</p>
-                            </div>
-                          </div>
-                        </div>
+                        </Link>
                     </OutlineBlock>
+                ))} 
                   </div>
                 </div>
               </div>

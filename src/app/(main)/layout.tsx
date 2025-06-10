@@ -1,7 +1,7 @@
 import { TextLogo, Logo } from "@/components/label/Logo";
 import { InitNavBar } from "@/components/ui/navBar";
 import { DarkButton, OutlineButton } from "@/components/ui/buttons";
-import { MobileHeader } from "@/components/ui/header"
+import { AuthSection, MobileHeader } from "@/components/ui/header"
 
 import SeachIcon from "$/assets/icons/search.svg"
 import BurgerIcon from "$/assets/icons/burger.svg"
@@ -19,8 +19,8 @@ export default function MainLayout({
   const test_links = [
     {
       name: "Моды",
-      to: "/search?add-on=mods",
-      page_name: "mods",
+      to: "/search?add-on=mod",
+      page_name: "mod",
     },
     {
       name: "Плагины",
@@ -29,18 +29,18 @@ export default function MainLayout({
     },
     {
       name: "Датапаки",
-      to: "/search?add-on=datapacks",
-      page_name: "datapacks",
+      to: "/search?add-on=data_pack",
+      page_name: "data_pack",
     },
     {
       name: "Шейдеры",
-      to: "/search?add-on=shaders",
-      page_name: "shaders",
+      to: "/search?add-on=shader",
+      page_name: "shader",
     },
     {
       name: "Ресурспаки",
-      to: "/search?add-on=resourcepacks",
-      page_name: "resourcepacks",
+      to: "/search?add-on=resource_pack",
+      page_name: "resource_pack",
     },
   ];
 
@@ -56,8 +56,7 @@ export default function MainLayout({
                 <InitNavBar navList={test_links} activeHighligth={true} activeParam={"add-on"}/>
               </section>
               <section className={styles.buttonsRows}>
-                <DarkButton text="Войти" redirectTo="/singIn"/>
-                <OutlineButton isGradient={true} redirectTo="/singUp" text="Создать аккаунт"/>
+                <AuthSection />
               </section>
             </div>
           </header>

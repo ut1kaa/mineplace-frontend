@@ -9,19 +9,14 @@ import Cross from "$/assets/icons/cross.svg"
 
 import {addRandomChars} from "@/utils/idGenerator";
 
-const Search = ({standartValue}: {standartValue?: string}) => {
-    const [value, setValue] = useState(standartValue);
+const Search = ({standartValue, onChange}: {standartValue?: string, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
 
     const elementId = addRandomChars("search");
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    }
 
     return (
         <OutlineSubBlock style={{height:"55px", width:"100%"}}>
         <div className={styles.search}>
-            <input type="text" value={value} onChange={handleChange} placeholder="Поиск..." id={elementId} name="search"/>
+            <input type="text" value={standartValue} onChange={onChange} placeholder="Поиск..." id={elementId} name="search"/>
             <SeachIcon />
             <label htmlFor={elementId}>Поиск...</label>
         </div>
@@ -29,19 +24,19 @@ const Search = ({standartValue}: {standartValue?: string}) => {
     );
 }
 
-const CustomInput = ({icon, inputType, inputName, placeHolder, standartValue}:
-     {icon: any, inputType: string, inputName: string, placeHolder: string, standartValue?: string}) => {
-    const [value, setValue] = useState(standartValue);
+const CustomInput = ({icon, inputType, inputName, placeHolder, standartValue, onChange}:
+     {icon: any, inputType: string, inputName: string, placeHolder: string, standartValue?: string, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
+    // const [value, setValue] = useState(standartValue);
     const elementId = addRandomChars("customInput");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    }
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setValue(e.target.value);
+    // }
 
     return (
         <OutlineSubBlock style={{height:"55px", width:"100%"}}>
             <div className={styles.search}>
-                <input type={inputType} value={value} onChange={handleChange} placeholder={placeHolder} id={elementId} name={inputName}/>
+                <input type={inputType} value={standartValue} onChange={onChange} placeholder={placeHolder} id={elementId} name={inputName}/>
                 {icon}
                 <label htmlFor={elementId}>{placeHolder}</label>
             </div>

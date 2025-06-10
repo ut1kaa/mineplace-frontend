@@ -57,6 +57,10 @@
 }
 
 .search_result {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
     .result {
         width: 50%;
         height: 300px;

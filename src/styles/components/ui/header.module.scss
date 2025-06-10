@@ -194,3 +194,15 @@
     }
 
 }
+
+.userInfo {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    .username {
+        color: var(--color_thumb);
+        font-weight: 700;
+    }
+}

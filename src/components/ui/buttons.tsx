@@ -29,27 +29,42 @@ const CustomButton = ({ text, redirectTo, colors, innerKey }: {text: string; red
     );
 }
 
-const OutlineButton = ({ text, isGradient=false, redirectTo}: {text: string; isGradient?: boolean; redirectTo?: string;}) => {
-    const router = useRouter();  
+interface OutlineButtonProps {
+    text: string;
+    isGradient?: boolean;
+    redirectTo?: string;
+    onClick?: () => void; // Добавляем обработчик клика
+  }
+  
+  const OutlineButton = ({ text, isGradient = false, redirectTo, onClick }: OutlineButtonProps) => {
+    const router = useRouter();
     const elementId = addRandomChars("outline-button-gradient");
     const url = `url(#${elementId})`;
-
+  
+    const handleClick = () => {
+      if (onClick) {
+        onClick(); // Если передана функция, выполняем её
+      } else if (redirectTo) {
+        router.push(redirectTo); // Если нет onClick, но есть redirectTo — делаем редирект
+      }
+    };
+  
     return (
-        <button className={`${styles.outlineButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
-            <svg width="170" height="48">
-                <defs>
-                    <linearGradient id={elementId}>
-                        <stop offset="0%" stopColor={isGradient ? virables.outlineButton_gradient_start : "#ffffff"}/>
-                        <stop offset="100%" stopColor={isGradient ? virables.outlineButton_gradient_stop : "#ffffff"} />
-                    </linearGradient>
-                </defs>
-                <rect x="1" y="1" rx="18" fill="none" stroke={url} width="168" height="36"></rect>
-            </svg>
-            <span className={isGradient ? styles.gradientText : styles.generalText}>{text}</span>
-        </button>
+      <button className={`${styles.outlineButton} ${styles.action}`} onClick={handleClick}>
+        <svg width="170" height="48">
+          <defs>
+            <linearGradient id={elementId}>
+              <stop offset="0%" stopColor={isGradient ? virables.outlineButton_gradient_start : "#ffffff"} />
+              <stop offset="100%" stopColor={isGradient ? virables.outlineButton_gradient_stop : "#ffffff"} />
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" rx="18" fill="none" stroke={url} width="168" height="36"></rect>
+        </svg>
+        <span className={isGradient ? styles.gradientText : styles.generalText}>{text}</span>
+      </button>
     );
-}
-
+  };
+  
 const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
     const router = useRouter();  
     return (
@@ -84,5 +99,24 @@ const BlockButton = ({children, redirectTo}: {children?: React.ReactNode; redire
     //   </OutlineSubBlock>
     // );
 }
+
+import { useState, useEffect } from "react";
+import { isTokenValid } from "../../app/utils/token";
+
+const AuthButton = () => {
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsValid(isTokenValid(token));
+  }, []);
+
+  if (isValid === null || isValid) return null; 
+
+  return <OutlineButton redirectTo="/signUp" text="Создать аккаунт" />;
+};
+
+export default AuthButton;
+
 
 export {CustomButton, DarkButton, OutlineButton, GradientButton, BlockButton};

@@ -1,3 +1,4 @@
+"use client"
 import styles from "@/styles/(main)/search/page.module.scss";
 
 import { OutlineBlock, OutlineSubBlock } from "@/components/ui/outlineBlocks";
@@ -47,8 +48,150 @@ import Link from "next/link";
 import Heart from '$/assets/icons/heart.svg';
 import Update from '$/assets/icons/update.svg';
 import Download from '$/assets/icons/download.svg';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import axios from 'axios';
+import { useSearchParams } from 'next/navigation';
 
-export default async function Mods() {
+interface AddOn {
+    uuid: string;
+    user_uuid: string;
+    username: string; // username пользователя, опубликовавшего аддон
+    name: string;
+    type: string; // AddOnType
+    short_description: string;
+    description: string;
+    downloads: number;
+    publish_date: string; // ISO 8601 string
+    update_date: string; // ISO 8601 string
+    likes_count: number;
+}
+
+interface AddOnListResponse {
+    items: AddOn[];
+    total_count: number;
+    page: number;
+    per_page: number;
+}
+
+// Интерфейс для параметров запроса (можно расширять по мере необходимости)
+interface AddonsQueryParams {
+    page?: number;
+    per_page?: number;
+    search?: string;
+    type?: string;
+    sort_by?: string;
+    sort_order?: string;
+}
+
+const formatNumber = (num: number): string => {
+    if (num >= 1_000_000) {
+        return (num / 1_000_000).toFixed(2) + 'М';
+    }
+    if (num >= 1_000) {
+        return (num / 1_000).toFixed(2) + 'К';
+    }
+    return num.toLocaleString();
+};
+
+const formatRelativeDate = (dateString: string): string => {
+    const now = new Date();
+    const updateDate = new Date(dateString);
+    const diffTime = Math.abs(now.getTime() - updateDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return 'Обновлено сегодня';
+    if (diffDays === 1) return 'Обновлено вчера';
+    if (diffDays <= 7) return `Обновлено ${diffDays} дн. назад`;
+    return `Обновлено ${updateDate.toLocaleDateString('ru-RU')}`;
+};
+
+export default function Mods() {
+    const [addons, setAddons] = useState<AddOn[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [totalCount, setTotalCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const perPage = 10;
+    const searchParams = useSearchParams();
+    const [searchInput, setSearchInput] = useState<string | null>(null);
+
+    const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+            setSearchInput(e.target.value);
+        };
+
+    const fetchAddons = async (params: AddonsQueryParams = {}) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const queryParams = new URLSearchParams({
+                page: (params.page || currentPage).toString(),
+                per_page: (params.per_page || perPage).toString(),
+                sort_by: params.sort_by || 'downloads',
+                sort_order: params.sort_order || 'desc',
+            });
+
+            if (params.search) queryParams.append('search', params.search);
+            if (params.type) queryParams.append('type', params.type);
+            if (params.user_uuid) queryParams.append('user_uuid', params.user_uuid);
+
+            const response = await axios.get<AddOnListResponse>(`/api/addons/get_addons?${queryParams.toString()}`);
+            setAddons(response.data.items);
+            setTotalCount(response.data.total_count);
+            setCurrentPage(response.data.page);
+        } catch (err: any) {
+            console.error('Ошибка при загрузке аддонов:', err);
+            if (axios.isAxiosError(err) && err.response) {
+                if (err.response.data && typeof err.response.data === 'object') {
+                    if (err.response.data.detail) {
+                        setError(err.response.data.detail);
+                    } else if (err.response.data.error && typeof err.response.data.error === 'string') {
+                        setError(err.response.data.error);
+                    } else if (err.response.data.msg) { 
+                        setError(err.response.data.msg);
+                    }
+                    else {
+                        setError(JSON.stringify(err.response.data, null, 2));
+                    }
+                } else if (typeof err.response.data === 'string') {
+                    setError(err.response.data);
+                } else {
+                    setError(err.message || 'Неизвестная ошибка при загрузке аддонов от сервера.');
+                }
+            } else {
+                setError(err.message || 'Сетевая ошибка или проблема с запросом.');
+            }
+            setAddons([]);
+            setTotalCount(0);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        const addonTypeFromUrl = searchParams.get('add-on');
+
+        const initialParams: AddonsQueryParams = { page: 1 };
+        if (addonTypeFromUrl) {
+            initialParams.type = addonTypeFromUrl;
+        }
+
+        if (searchInput) {
+            initialParams.search = searchInput;
+        }
+
+        fetchAddons(initialParams);
+    }, [searchParams, searchInput]);
+
+    // const handlePageChange = (newPage: number) => {
+    //     setCurrentPage(newPage);
+    //     fetchAddons({ page: newPage });
+    // };
+
+    const loadingMessage = loading && <div className={styles.loading_indicator}>Загрузка аддонов...</div>;
+    const errorMessage = error && <div className={styles.error_message}>Ошибка: {error}</div>;
+    const noResultsMessage = !loading && !error && addons.length === 0 && (
+        <div className={styles.no_results}>Аддоны не найдены.</div>
+    );
 
     const sort_option = [
         {
@@ -278,7 +421,7 @@ export default async function Mods() {
                   <OutlineBlock style={{padding: "1.2rem"}}>
                       <div className={styles.search_panel_layout}>
                           <div className={styles.SearchComponent}>
-                            <Search/>
+                            <Search standartValue={searchInput} onChange={handleSearchInput}/>
                           </div>
                           <p>Сортировать по</p>
                           <div className={styles.SortComponent}>
@@ -298,41 +441,66 @@ export default async function Mods() {
                 </div>
                 <div className={styles.pagination}>PAGINATION</div>
                 <div className={styles.search_result}>
+                  {loadingMessage}
+                  {errorMessage}
+                  {noResultsMessage}
                   <div className={styles.result}>
-                    <OutlineBlock style={{padding: "0"}}>
-                        <div className={styles.result_block}>
-                          <Image className={styles.background}src={backCard} alt="back" width={160} height={60} />
-                          <div className={styles.name}>
-                            <Image src={profilePic} alt="profilepic" width={100} height={100} />
-                            <div>
-                              <h1>Catumn</h1>
-                              <p>от <Link href=""><u>catuser123</u></Link></p>
+                  {addons.map((addon) => ( 
+                    <OutlineBlock style={{ padding: "0" }} key={addon.uuid}>
+                        <Link className={styles.result_block} href={`/add-on/${addon.uuid}?page=discription`}>
+                            <Image
+                                className={styles.background}
+                                src={backCard}
+                                alt={addon.name}
+                                width={160}
+                                height={60}
+                            />
+                            <div className={styles.name}>
+                                <Image
+                                    src={profilePic}
+                                    alt={`Профиль ${addon.user_uuid}`}
+                                    width={100}
+                                    height={100}
+                                />
+                                <div>
+                                    <h1>{addon.name}</h1>
+                                    <p>
+                                        от <Link href={`/user/${addon.user_uuid}`}>
+                                            <u>{addon.username}</u>
+                                        </Link>
+                                    </p>
+                                </div>
                             </div>
-                          </div>
-                          <div className={styles.info}>
-                            <p>Погрузитесь в мир Майнкрафта с уникальными биомами, звуками мурчания и новыми...</p>
-                            <div className={styles.settings}> 
-                              <div><div className={styles.Icon}><WorldGeneration /></div><b>Клиент или сервер</b></div>
-                              <div><div className={styles.Icon}><Mobs /></div>Мобы</div>
-                              <div><div className={styles.Icon}><Fabric /></div>Fabric</div>
+                            <div className={styles.info}>
+                                <p className={styles.short_description_text}>{addon.short_description}</p>
+                                <div className={styles.settings}>
+                                    {addon.type === 'map' && (
+                                        <div><div className={styles.Icon}><WorldGeneration /></div><b>Карта</b></div>
+                                    )}
+                                    {addon.type === 'model' && (
+                                        <div><div className={styles.Icon}><Mobs /></div><b>Модель</b></div>
+                                    )}
+                                </div>
                             </div>
-                          </div>
-                          <div className={styles.stat}>
-                            <div className={styles.left}>
-                              <div>
-                                <div className={styles.Icon}><Download/></div><b>1.34М</b>
-                              </div>
-                              <div>
-                                <div className={styles.Icon}><Heart/></div><b>3,353</b>
-                              </div>
+                            <div className={styles.stat}>
+                                <div className={styles.left}>
+                                    <div>
+                                        <div className={styles.Icon}><Download /></div>
+                                        <b>{formatNumber(addon.downloads)}</b>
+                                    </div>
+                                    <div>
+                                        <div className={styles.Icon}><Heart /></div>
+                                        <b>{addon.likes_count.toLocaleString()}</b>
+                                    </div>
+                                </div>
+                                <div className={styles.right}>
+                                    <div className={styles.Icon}><Update /></div>
+                                    <p>{formatRelativeDate(addon.update_date)}</p>
+                                </div>
                             </div>
-                            <div className={styles.right}>
-                              <div className={styles.Icon}><Update/></div><p>Обновлено вчера</p>
-                            </div>
-                          </div>
-                        </div>
+                        </Link>
                     </OutlineBlock>
-                  
+                ))} 
                   </div>
                 </div>
               </div>
