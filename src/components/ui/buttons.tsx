@@ -33,7 +33,7 @@ interface OutlineButtonProps {
     text: string;
     isGradient?: boolean;
     redirectTo?: string;
-    onClick?: () => void; // Добавляем обработчик клика
+    onClick?: () => void;
   }
   
   const OutlineButton = ({ text, isGradient = false, redirectTo, onClick }: OutlineButtonProps) => {
@@ -43,9 +43,9 @@ interface OutlineButtonProps {
   
     const handleClick = () => {
       if (onClick) {
-        onClick(); // Если передана функция, выполняем её
+        onClick();
       } else if (redirectTo) {
-        router.push(redirectTo); // Если нет onClick, но есть redirectTo — делаем редирект
+        router.push(redirectTo);
       }
     };
   
@@ -65,10 +65,17 @@ interface OutlineButtonProps {
     );
   };
   
-const GradientButton = ({ text, redirectTo }: {text: string; redirectTo?: string}) => {
+const GradientButton = ({ text, redirectTo, onClick }: {text: string; redirectTo?: string; onClick?: () => void}) => {
+    const handleClick = () => {
+      if (onClick) {
+        onClick();
+      } else if (redirectTo) {
+        router.push(redirectTo);
+      }
+    };
     const router = useRouter();  
     return (
-        <button className={`${styles.gradientButton} ${styles.action}`} onClick = {redirectTo ? () => router.push(redirectTo) : () => ""}>
+        <button className={`${styles.gradientButton} ${styles.action}`} onClick={handleClick}>
             {text}
         </button>
     );

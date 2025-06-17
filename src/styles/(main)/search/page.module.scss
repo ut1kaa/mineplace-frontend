@@ -133,10 +133,12 @@
                 & > * {
                     max-width: 465px;
                 }
+                width: 100%;
                 
                 display: flex;
-                justify-content: center;
+                // justify-content: center;
                 gap: 10px;
+                // flex-wrap: wrap;
                 flex-wrap: wrap;
                 // width: 50%;
                 // height: 300px;

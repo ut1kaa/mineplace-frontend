@@ -52,7 +52,7 @@ import Update from '$/assets/icons/update.svg';
 import Download from '$/assets/icons/download.svg';
 import { InitNavBar } from "@/components/ui/navBar";
 import { useEffect, useState } from "react";
-import { isTokenValid } from "../../utils/token";
+import { isTokenValid } from "../../../utils/token";
 import { notFound } from 'next/navigation';
 
 interface AddOn {
