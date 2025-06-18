@@ -53,8 +53,14 @@ import { InitNavBar } from "@/components/ui/navBar";
 import { use, useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 
+import { jwtDecode } from "jwt-decode";
+
 interface AddOnPageProps {
   params: { id: string };
+}
+
+interface JwtPayload {
+  user_uuid: string;
 }
 
 interface AddOn {
@@ -75,6 +81,14 @@ export default function Addon({ params }: AddOnPageProps) {
     const [addon, setAddon] = useState<AddOn | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const token = localStorage.getItem('token');
+    let userUuid: string | null = null;
+
+    if (token) {
+        const decoded = jwtDecode<JwtPayload>(token);
+        userUuid = decoded.sub;
+        }
 
 
     const { id } = params;
@@ -191,6 +205,7 @@ export default function Addon({ params }: AddOnPageProps) {
                             <hr/>
                             {/* <GradientButton text={"Подписаться"}/> */}
                             <GradientButton text={"Сохранить"}/>
+                            { addon.user_uuid == userUuid ? <GradientButton text={"Добавить новую версию"}/> : null}
                             </>
                             ) : null}
 
